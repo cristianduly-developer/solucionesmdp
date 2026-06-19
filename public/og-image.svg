@@ -1,0 +1,58 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0a0f"/>
+      <stop offset="100%" stop-color="#0f0f1a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#orb)"/>
+
+  <!-- Grid lines decorativas -->
+  <line x1="0" y1="210" x2="1200" y2="210" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+  <line x1="0" y1="420" x2="1200" y2="420" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="630" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="630" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+
+  <!-- Badge superior -->
+  <rect x="460" y="120" width="280" height="36" rx="18" fill="#6366f1" fill-opacity="0.15" stroke="#6366f1" stroke-opacity="0.3" stroke-width="1"/>
+  <circle cx="486" cy="138" r="5" fill="#818cf8"/>
+  <text x="500" y="143" font-family="system-ui, sans-serif" font-size="14" fill="#a5b4fc" font-weight="500">Mar del Plata · Argentina</text>
+
+  <!-- Título principal -->
+  <text x="600" y="235" font-family="system-ui, sans-serif" font-size="64" font-weight="800" fill="white" text-anchor="middle" letter-spacing="-2">Soluciones</text>
+  <text x="600" y="310" font-family="system-ui, sans-serif" font-size="64" font-weight="800" fill="#818cf8" text-anchor="middle" letter-spacing="-2">MDP</text>
+
+  <!-- Subtítulo -->
+  <text x="600" y="368" font-family="system-ui, sans-serif" font-size="22" fill="#94a3b8" text-anchor="middle">Apps para negocios argentinos · Sin papeles · Desde el celular</text>
+
+  <!-- 5 app pills -->
+  <rect x="103" y="420" width="180" height="48" rx="24" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="193" y="450" font-family="system-ui, sans-serif" font-size="16" fill="#34d399" text-anchor="middle" font-weight="500">💇 Turnos</text>
+
+  <rect x="303" y="420" width="190" height="48" rx="24" fill="#64748b" fill-opacity="0.1" stroke="#64748b" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="398" y="450" font-family="system-ui, sans-serif" font-size="16" fill="#94a3b8" text-anchor="middle" font-weight="500">🔧 Presupuesto</text>
+
+  <rect x="513" y="420" width="174" height="48" rx="24" fill="#3b82f6" fill-opacity="0.1" stroke="#3b82f6" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="600" y="450" font-family="system-ui, sans-serif" font-size="16" fill="#60a5fa" text-anchor="middle" font-weight="500">🚚 Reparto</text>
+
+  <rect x="707" y="420" width="180" height="48" rx="24" fill="#22c55e" fill-opacity="0.1" stroke="#22c55e" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="797" y="450" font-family="system-ui, sans-serif" font-size="16" fill="#4ade80" text-anchor="middle" font-weight="500">📚 Docente</text>
+
+  <rect x="907" y="420" width="180" height="48" rx="24" fill="#b45309" fill-opacity="0.1" stroke="#b45309" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="997" y="450" font-family="system-ui, sans-serif" font-size="16" fill="#d97706" text-anchor="middle" font-weight="500">🏟️ Eventos</text>
+
+  <!-- Footer line -->
+  <line x1="100" y1="530" x2="1100" y2="530" stroke="white" stroke-opacity="0.05" stroke-width="1"/>
+  <text x="600" y="562" font-family="system-ui, sans-serif" font-size="15" fill="#475569" text-anchor="middle">28 días gratis · Desde $25.000/mes · Sin tarjeta de crédito</text>
+</svg>

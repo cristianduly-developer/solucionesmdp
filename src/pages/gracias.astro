@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="¡Listo!" description="Recibimos tu solicitud. En menos de 24 horas te activamos el acceso.">
+  <section class="max-w-lg mx-auto px-4 py-28 text-center">
+
+    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8 text-5xl">
+      🎉
+    </div>
+
+    <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+      ¡Todo listo!
+    </h1>
+    <p class="text-slate-400 text-lg mb-2">
+      Tu solicitud nos llegó por WhatsApp.
+    </p>
+    <p class="text-slate-400 text-lg mb-10">
+      En menos de <span class="text-white font-semibold">24 horas</span> te mandamos el acceso para que empieces tu prueba gratis.
+    </p>
+
+    <!-- Qué pasa ahora -->
+    <div class="bg-[#13131a] border border-white/5 rounded-2xl p-6 text-left mb-8">
+      <h2 class="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-5">¿Qué pasa ahora?</h2>
+      <div class="flex flex-col gap-5">
+        {[
+          { n: '1', title: 'Revisamos tu solicitud', desc: 'Confirmamos que todo esté bien con tus datos.' },
+          { n: '2', title: 'Activamos tu acceso', desc: 'Creamos tu cuenta y te habilitamos el plan Profesional completo por 28 días.' },
+          { n: '3', title: 'Te avisamos por WhatsApp', desc: 'Te mandamos el link de acceso y un video corto de cómo empezar.' },
+        ].map(step => (
+          <div class="flex items-start gap-4">
+            <div class="w-7 h-7 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-400 text-sm font-bold flex items-center justify-center flex-shrink-0">
+              {step.n}
+            </div>
+            <div>
+              <p class="text-white font-medium text-sm">{step.title}</p>
+              <p class="text-slate-500 text-sm mt-0.5">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Mientras tanto -->
+    <div class="bg-indigo-500/5 border border-indigo-500/20 rounded-2xl p-5 mb-10">
+      <p class="text-indigo-400 text-sm font-medium mb-1">Mientras esperás</p>
+      <p class="text-slate-400 text-sm">
+        Podés explorar cómo funciona la app desde las capturas de pantalla en la página de cada producto.
+      </p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="/"
+        class="inline-flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm">
+        Volver al inicio
+      </a>
+      <a href="https://wa.me/542235767784" target="_blank"
+        class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm">
+        Hablar por WhatsApp
+      </a>
+    </div>
+
+  </section>
+</Layout>

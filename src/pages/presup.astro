@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AppPage from '../components/AppPage.astro';
+---
+<Layout title="App Presupuesto" description="Presupuestos profesionales en 2 minutos. Firma digital, seguimiento de obras y reportes para profesionales de la construcción.">
+  <AppPage
+    name="App Presupuesto"
+    tagline="El sistema operativo de tu oficio"
+    description="Generá un presupuesto profesional en menos de 2 minutos, mandalo por WhatsApp y que el cliente lo firme desde el celular — sin papeles, sin idas y vueltas, sin verse en persona."
+    icon="🔧"
+    screenshots={['/screenshots/presup/dashboard.jpg', '/screenshots/presup/presupuestos.jpg', '/screenshots/presup/obras.jpg', '/screenshots/presup/detalle-obra.jpg', '/screenshots/presup/menu.jpg']}
+    audience="Gasistas · Plomeros · Electricistas · Pintores · Instaladores"
+    accentColor="bg-slate-600"
+    accentBg="bg-slate-500/10"
+    accentBorder="border-slate-500/30"
+    accentText="text-slate-300"
+    ctaUrl="https://app-presup.vercel.app"
+    differentiators={[
+      'Presupuesto en 2 minutos',
+      'El cliente firma desde el celular',
+      'Sin instalación para el cliente',
+      'Seguimiento de obras',
+      'Ganancia neta real',
+      'Alertas de vencimiento',
+      'Diseñado para Argentina',
+      'PWA instalable',
+    ]}
+    features={[
+      { icon: '📄', title: 'Presupuestos rápidos', desc: 'Múltiples ítems, secciones por etapa, mano de obra y materiales. Guardás borradores y retomás cuando querés. Duplicá presupuestos para trabajos similares.' },
+      { icon: '✍️', title: 'Firma digital del cliente', desc: 'El cliente recibe un link único por WhatsApp. Dibuja su firma desde el celular y acepta el presupuesto sin que se vean en persona.' },
+      { icon: '🔗', title: 'Link sin instalación', desc: 'El cliente ve el presupuesto completo con tu logo desde el navegador. Puede aceptar, rechazar o consultar directamente por WhatsApp.' },
+      { icon: '🏗️', title: 'Gestión de obras', desc: 'Tablero tipo embudo: Presupuestado → En ejecución → Pendiente de cobro → Finalizado. Pagos parciales, gastos, horas y fotos por obra.' },
+      { icon: '📅', title: 'Agenda de visitas', desc: 'Registrá visitas a clientes con fecha y hora. Creá un cliente nuevo directamente desde la visita. Timeline del día con acceso rápido al teléfono.' },
+      { icon: '📊', title: 'Reportes y estadísticas', desc: 'KPIs del mes: facturado, cobrado, pendiente y ganancia neta real (descuenta gastos y horas). Gráficos por período y ranking de servicios.' },
+      { icon: '⚠️', title: 'Alertas de vencimiento', desc: 'Los presupuestos próximos a vencer se resaltan en naranja y rojo. No perdés ningún trabajo por descuido.' },
+      { icon: '👥', title: 'Base de clientes', desc: 'Historial completo por cliente: todos sus presupuestos, obras y visitas en un solo lugar.' },
+      { icon: '📑', title: 'PDF con un toque', desc: 'Generá y exportá PDF de presupuestos, recibos y reportes. Listos para enviar o imprimir.' },
+    ]}
+    plans={[
+      {
+        name: 'Básico',
+        features: [
+          'Hasta 50 presupuestos por mes',
+          'Hasta 30 obras activas',
+          'Clientes ilimitados',
+          'Link público para el cliente',
+          'Agenda de visitas',
+          'Estados de presupuesto',
+        ],
+      },
+      {
+        name: 'Profesional',
+        highlight: true,
+        badge: 'Más elegido',
+        features: [
+          'Hasta 200 presupuestos por mes',
+          'Hasta 100 obras activas',
+          'Todo lo del plan Básico',
+          'Exportar PDF',
+          'Plantillas por oficio',
+          'Estadísticas avanzadas',
+        ],
+      },
+      {
+        name: 'Premium',
+        features: [
+          'Presupuestos ilimitados',
+          'Obras ilimitadas',
+          'Todo lo del plan Profesional',
+          'Equipo multiusuario',
+          'Reportes avanzados',
+          'Soporte prioritario',
+        ],
+      },
+    ]}
+  />
+</Layout>

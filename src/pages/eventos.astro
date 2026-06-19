@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AppPage from '../components/AppPage.astro';
+---
+<Layout title="App Eventos" description="Sistema de reservas para quinchos, salones, SUM y canchas. Calendario, cobros parciales y WhatsApp integrado.">
+  <AppPage
+    name="App Eventos"
+    tagline="Reservas de espacios sin caos"
+    description="Centralizá el calendario, los cobros y los clientes de tu espacio de alquiler en un solo lugar. Desde quinchos y salones hasta canchas de pádel — con WhatsApp integrado, señas y temporadas de precios."
+    icon="🏟️"
+    screenshots={['/screenshots/eventos/calendario.jpg', '/screenshots/eventos/turnos.jpg', '/screenshots/eventos/detalle-reserva.jpg', '/screenshots/eventos/ficha-cliente.jpg']}
+    audience="Quinchos · Salones de fiestas · SUM · Canchas de pádel y fútbol"
+    accentColor="bg-amber-700"
+    accentBg="bg-amber-700/10"
+    accentBorder="border-amber-700/30"
+    accentText="text-amber-600"
+    ctaUrl="https://quincho-bere.vercel.app"
+    differentiators={[
+      'Calendario por espacio y turno',
+      'WhatsApp sin API externa',
+      'Temporadas de precios',
+      'Señas y pagos parciales',
+      'Múltiples espacios',
+      'Sin instalación (PWA)',
+      'Demo 28 días sin tarjeta',
+      'White-label con tu logo',
+    ]}
+    features={[
+      { icon: '📅', title: 'Calendario de disponibilidad', desc: 'Vista mensual por espacio y turno. Detección automática de conflictos por solapamiento real, no por nombre de turno.' },
+      { icon: '🏟️', title: 'Múltiples espacios', desc: 'Configurá cada espacio con su nombre, capacidad y turnos propios. Modo fijo (quincho/salón) o slots por hora (canchas). Selector en el calendario.' },
+      { icon: '💰', title: 'Temporadas de precios', desc: 'Definí "Temporada Alta" con rango de fechas y precio diferenciado semana/finde. Los turnos que no aplican en temporada se desactivan automáticamente.' },
+      { icon: '💬', title: 'WhatsApp integrado', desc: 'Plantillas editables con variables dinámicas ({nombre}, {fecha}, {horario}, {saldo}). Recordatorio pre-evento y mensaje post-evento. Sin API, usa el WhatsApp de tu celular.' },
+      { icon: '💳', title: 'Señas y pagos parciales', desc: 'Registrá seña al momento de la reserva y pagos parciales a lo largo del tiempo. Historial de caja y saldo pendiente por reserva.' },
+      { icon: '⭐', title: 'Control de clientes', desc: 'Historial de reservas por cliente, registro de pagos y calificación post-evento (1-5 estrellas) para identificar clientes problemáticos.' },
+      { icon: '🎁', title: 'Servicios extras', desc: 'Catálogo de adicionales (catering, decoración, sonido) con precio. Vinculables a cualquier reserva al crearla o editarla.' },
+      { icon: '📄', title: 'PDFs automáticos', desc: 'Ficha del evento, recibo de pago y reporte con un toque. Todo listo para imprimir o enviar.' },
+      { icon: '🏷️', title: 'White-label', desc: 'Tu nombre, logo, ciudad y teléfono en toda la app: login, encabezado, PDFs y mensajes de WhatsApp.' },
+    ]}
+    plans={[
+      {
+        name: 'Básico',
+        features: [
+          'Hasta 50 reservas por mes',
+          '1 espacio',
+          'Calendario y disponibilidad',
+          'Señas y pagos parciales',
+          'Gestión de clientes',
+          'PDFs automáticos',
+        ],
+      },
+      {
+        name: 'Profesional',
+        highlight: true,
+        badge: 'Más elegido',
+        features: [
+          'Hasta 100 reservas por mes',
+          'Hasta 3 espacios',
+          'Todo lo del plan Básico',
+          'Recordatorios WhatsApp',
+          'Servicios extras',
+          '1 colaborador',
+        ],
+      },
+      {
+        name: 'Premium',
+        features: [
+          'Reservas ilimitadas',
+          'Hasta 5 espacios',
+          'Todo lo del plan Profesional',
+          'Temporadas de precios avanzadas',
+          '3 colaboradores',
+          'Soporte prioritario',
+        ],
+      },
+    ]}
+  />
+</Layout>

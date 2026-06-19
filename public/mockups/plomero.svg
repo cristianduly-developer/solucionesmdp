@@ -1,0 +1,64 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <rect width="800" height="600" fill="#f8fafc"/>
+
+  <!-- Nav -->
+  <rect width="800" height="56" fill="#0f172a"/>
+  <rect x="32" y="20" width="48" height="16" rx="3" fill="#3b82f6" opacity="0.8"/>
+  <rect x="88" y="22" width="50" height="12" rx="3" fill="white" opacity="0.15"/>
+  <rect x="148" y="22" width="50" height="12" rx="3" fill="white" opacity="0.15"/>
+  <rect x="208" y="22" width="60" height="12" rx="3" fill="white" opacity="0.15"/>
+  <rect x="630" y="16" width="120" height="24" rx="6" fill="#3b82f6"/>
+
+  <!-- Hero oscuro -->
+  <rect y="56" width="800" height="240" fill="#1e293b"/>
+  <rect x="32" y="86" width="180" height="12" rx="3" fill="#3b82f6" opacity="0.6"/>
+  <rect x="32" y="112" width="360" height="32" rx="5" fill="white" opacity="0.9"/>
+  <rect x="32" y="152" width="300" height="32" rx="5" fill="white" opacity="0.5"/>
+  <rect x="32" y="200" width="140" height="36" rx="8" fill="#3b82f6"/>
+  <rect x="186" y="200" width="120" height="36" rx="8" fill="white" opacity="0.1" stroke="white" stroke-opacity="0.2" stroke-width="1"/>
+  <!-- Icono decorativo -->
+  <circle cx="650" cy="176" r="90" fill="#3b82f6" opacity="0.08"/>
+  <circle cx="650" cy="176" r="60" fill="#3b82f6" opacity="0.1"/>
+  <rect x="618" y="148" width="64" height="56" rx="8" fill="#3b82f6" opacity="0.3"/>
+  <rect x="630" y="160" width="40" height="8" rx="2" fill="#93c5fd"/>
+  <rect x="630" y="176" width="30" height="8" rx="2" fill="#93c5fd" opacity="0.6"/>
+  <rect x="630" y="192" width="35" height="8" rx="2" fill="#93c5fd" opacity="0.4"/>
+
+  <!-- Stats -->
+  <rect y="296" width="800" height="60" fill="#0f172a"/>
+  <rect x="60" y="318" width="60" height="16" rx="3" fill="#3b82f6"/>
+  <rect x="60" y="338" width="80" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="240" y="318" width="60" height="16" rx="3" fill="#3b82f6"/>
+  <rect x="240" y="338" width="80" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="420" y="318" width="60" height="16" rx="3" fill="#3b82f6"/>
+  <rect x="420" y="338" width="80" height="8" rx="2" fill="white" opacity="0.2"/>
+  <rect x="600" y="318" width="60" height="16" rx="3" fill="#3b82f6"/>
+  <rect x="600" y="338" width="80" height="8" rx="2" fill="white" opacity="0.2"/>
+
+  <!-- Servicios -->
+  <rect x="32" y="380" width="220" height="30" rx="4" fill="#1e293b" opacity="0.1"/>
+  <rect x="32" y="390" width="160" height="14" rx="3" fill="#1e293b" opacity="0.5"/>
+  <rect x="32" y="420" width="226" height="110" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="278" y="420" width="226" height="110" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="524" y="420" width="226" height="110" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <rect x="50" y="440" width="24" height="24" rx="6" fill="#dbeafe"/>
+  <rect x="84" y="444" width="90" height="10" rx="3" fill="#1e293b" opacity="0.7"/>
+  <rect x="50" y="472" width="170" height="8" rx="2" fill="#94a3b8" opacity="0.5"/>
+  <rect x="50" y="486" width="140" height="8" rx="2" fill="#94a3b8" opacity="0.5"/>
+
+  <rect x="296" y="440" width="24" height="24" rx="6" fill="#dbeafe"/>
+  <rect x="330" y="444" width="90" height="10" rx="3" fill="#1e293b" opacity="0.7"/>
+  <rect x="296" y="472" width="170" height="8" rx="2" fill="#94a3b8" opacity="0.5"/>
+  <rect x="296" y="486" width="140" height="8" rx="2" fill="#94a3b8" opacity="0.5"/>
+
+  <rect x="542" y="440" width="24" height="24" rx="6" fill="#dbeafe"/>
+  <rect x="576" y="444" width="90" height="10" rx="3" fill="#1e293b" opacity="0.7"/>
+  <rect x="542" y="472" width="170" height="8" rx="2" fill="#94a3b8" opacity="0.5"/>
+  <rect x="542" y="486" width="140" height="8" rx="2" fill="#94a3b8" opacity="0.5"/>
+
+  <!-- CTA band -->
+  <rect y="548" width="800" height="52" fill="#1d4ed8"/>
+  <rect x="200" y="562" width="260" height="14" rx="3" fill="white" opacity="0.6"/>
+  <rect x="560" y="556" width="140" height="28" rx="7" fill="white" opacity="0.15"/>
+</svg>

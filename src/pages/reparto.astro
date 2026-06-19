@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AppPage from '../components/AppPage.astro';
+---
+<Layout title="App Reparto" description="Gestión de reparto a domicilio sin papel ni Excel. Pedidos, rutas, stock y cobros — incluso sin internet.">
+  <AppPage
+    name="App Reparto"
+    tagline="Gestioná tu reparto sin papel ni Excel"
+    description="Pedidos, rutas, stock y cobros en un solo lugar — incluso sin internet. Para distribuidores y negocios que salen a repartir todos los días y necesitan orden sin complicaciones."
+    icon="🚚"
+    screenshots={['/screenshots/reparto/dashboard.jpg', '/screenshots/reparto/pedidos.jpg', '/screenshots/reparto/camion.jpg', '/screenshots/reparto/onboarding.jpg']}
+    audience="Distribuidores de agua · Almacenes · Verdulerías · Panaderías"
+    accentColor="bg-blue-600"
+    accentBg="bg-blue-500/10"
+    accentBorder="border-blue-500/30"
+    accentText="text-blue-400"
+    ctaUrl="https://app-reparto.vercel.app"
+    differentiators={[
+      '100% offline, sincroniza solo',
+      'Sin Play Store ni App Store',
+      'Parser de pedidos por WhatsApp',
+      'Ruta optimizada con IA',
+      'Precios por tipo de cliente',
+      'Multi-usuario con roles',
+      'Cuentas corrientes',
+      'Gestión de envases',
+    ]}
+    features={[
+      { icon: '📊', title: 'Dashboard del día', desc: 'Métricas en tiempo real: entregados vs pendientes, total cobrado, proyección de mañana. Alertas de stock bajo y saldos pendientes. Barra de progreso de la ruta.' },
+      { icon: '📵', title: '100% offline', desc: 'Todos los datos se guardan en el dispositivo (IndexedDB). Funciona en el campo sin señal y sincroniza automáticamente al volver a conectarse.' },
+      { icon: '🤖', title: 'Parser de pedidos WhatsApp', desc: 'Pegás un mensaje de pedido de WhatsApp y la app lo convierte en un pedido automáticamente. Ahorrás minutos de carga en cada pedido (plan Premium+).' },
+      { icon: '🗺️', title: 'Ruta con IA', desc: 'La app sugiere el orden óptimo de entregas para ahorrar tiempo y combustible. También podés ordenar las paradas manualmente y guardar el orden para el día.' },
+      { icon: '📦', title: 'Armar camión', desc: 'Consolidado automático de todos los productos a cargar antes de salir. Vista clara para el encargado de preparar la carga del día.' },
+      { icon: '👥', title: 'Multi-usuario con roles', desc: 'Admin (acceso completo), vendedor (pedidos y clientes), repartidor (solo su ruta del día). Cada uno ve lo que necesita, nada más.' },
+      { icon: '💳', title: 'Cuentas corrientes', desc: 'Seguimiento de deuda por cliente, movimientos de cuenta y vista total de lo que debés cobrar. Ideal para clientes que pagan a fin de mes (plan Premium+).' },
+      { icon: '🔄', title: 'Gestión de envases', desc: 'Registrá el retorno de bidones, botellones y otros envases. Sabés siempre cuántos tiene cada cliente y cuántos te deben.' },
+      { icon: '📣', title: 'WhatsApp masivo', desc: 'Avisale a todos los clientes del día con un mensaje personalizable — nombre, dirección, productos — con un solo toque.' },
+    ]}
+    plans={[
+      {
+        name: 'Básico',
+        features: [
+          'Hasta 25 clientes',
+          'Hasta 100 pedidos por mes',
+          'Gestión de pedidos y ruta',
+          'Catálogo con variantes',
+          'Control de stock',
+          'Dashboard del día',
+        ],
+      },
+      {
+        name: 'Premium',
+        highlight: true,
+        badge: 'Más elegido',
+        features: [
+          'Hasta 50 clientes',
+          'Hasta 300 pedidos por mes',
+          'Todo lo del plan Básico',
+          'Cuentas corrientes',
+          'Parser de pedidos WhatsApp',
+          'Ruta optimizada con IA',
+          'Hasta 2 colaboradores',
+        ],
+      },
+      {
+        name: 'Full',
+        features: [
+          'Clientes ilimitados',
+          'Pedidos ilimitados',
+          'Todo lo del plan Premium',
+          'Hasta 4 colaboradores',
+          'Funciones de IA avanzadas',
+          'Soporte prioritario',
+        ],
+      },
+    ]}
+  />
+</Layout>

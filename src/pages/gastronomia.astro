@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AppPage from '../components/AppPage.astro';
+---
+<Layout title="App Gastronomía" description="Gestión para restaurantes, food trucks y rotiserías. Mesas, comandas, cocina y delivery en tiempo real desde una sola app.">
+  <AppPage
+    name="App Gastronomía"
+    tagline="Tu local, todo en tiempo real"
+    description="Desde food trucks hasta restaurantes con salón — gestioná ventas, mesas, cocina y delivery desde una sola app. Sin instalación, sin papeles, en tiempo real."
+    icon="🍽️"
+    screenshots={['/screenshots/gastronomia/dashboard.jpg', '/screenshots/gastronomia/mesas.jpg', '/screenshots/gastronomia/cocina.jpg', '/screenshots/gastronomia/productos.jpg', '/screenshots/gastronomia/config.jpg']}
+    audience="Food trucks · Rotiserías · Dark kitchens · Restaurantes"
+    accentColor="bg-orange-600"
+    accentBg="bg-orange-500/10"
+    accentBorder="border-orange-500/30"
+    accentText="text-orange-400"
+    ctaUrl="https://app-gastronomia-lemon.vercel.app"
+    differentiators={[
+      'Todo en tiempo real',
+      'Sin instalación',
+      'QR propio con pedidos',
+      'Roles por empleado',
+      'Monitor de cocina',
+      'Delivery integrado',
+      '28 días gratis',
+      'Login con Google',
+    ]}
+    features={[
+      { icon: '💰', title: 'Ventas rápidas', desc: 'Registrá ventas en segundos desde el mostrador sin necesitar mesa. Elegís productos, aplicás el método de pago y listo. Ideal para take away y mostrador.' },
+      { icon: '🪑', title: 'Mesas y salón', desc: 'Vista del salón en tiempo real con el estado de cada mesa: libre, ocupada, pidió la cuenta, reservada. Sectores configurables: Salón, Terraza, Barra, VIP y más.' },
+      { icon: '📋', title: 'Comandas', desc: 'Cada mesa tiene su comanda abierta. Agregás productos por tandas con observaciones libres ("sin cebolla", "bien cocido"). El cajero cierra y genera el ticket imprimible.' },
+      { icon: '👨‍🍳', title: 'Monitor de cocina', desc: 'Pantalla para la cocina con pedidos ordenados por tiempo de espera. Tres columnas: Pendiente → En preparación → Listo. Ideal en tablets con pantalla siempre encendida.' },
+      { icon: '🛵', title: 'Delivery', desc: 'Panel Kanban con pedidos en 4 estados: Recibido → En cocina → En camino → Entregado. Los pedidos vienen del QR o se cargan manualmente. Soporta retiro en el local.' },
+      { icon: '📱', title: 'Menú QR', desc: 'Cada local tiene su link y QR único para que los clientes vean la carta desde el celular. También pueden hacer pedidos directamente desde el QR, en mesa o para delivery.' },
+      { icon: '🏧', title: 'Caja', desc: 'Apertura y cierre diario con saldo inicial, registro de gastos y resumen del día con totales por método de pago: efectivo, transferencia, débito y crédito.' },
+      { icon: '📊', title: 'Dashboard en tiempo real', desc: 'Ventas del día, ticket promedio, mesas ocupadas y pedidos en cocina. Se actualiza solo, sin recargar la página.' },
+      { icon: '👥', title: 'Roles por empleado', desc: 'Cada persona ve solo lo que necesita: el mozo ve mesas, la cocina ve pedidos, el cajero ve caja. Sin confusiones ni accesos innecesarios.' },
+    ]}
+    plans={[
+      {
+        name: 'Básico',
+        features: [
+          'Food trucks · Rotiserías · Dark kitchens',
+          'Hasta 50 productos',
+          'Ventas rápidas',
+          'Menú QR y delivery',
+          'Caja y clientes',
+          '1 colaborador',
+        ],
+      },
+      {
+        name: 'Profesional',
+        highlight: true,
+        badge: 'Más elegido',
+        features: [
+          'Restaurantes pequeños con salón',
+          'Hasta 150 productos',
+          'Todo lo del plan Básico',
+          'Mesas y salón',
+          'Comandas y monitor de cocina',
+          'QR pedido desde mesa · 3 colaboradores',
+        ],
+      },
+      {
+        name: 'Premium',
+        features: [
+          'Restaurantes medianos y grandes',
+          'Productos ilimitados',
+          'Todo lo del plan Profesional',
+          'Layout visual del salón',
+          '6 colaboradores',
+          'Soporte prioritario',
+        ],
+      },
+    ]}
+  />
+</Layout>

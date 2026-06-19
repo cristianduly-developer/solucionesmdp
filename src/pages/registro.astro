@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const apps = [
+  { value: 'turnos', label: '💇 App Turnos — Estética y belleza' },
+  { value: 'presup', label: '🔧 App Presupuesto — Presupuestos y obras' },
+  { value: 'reparto', label: '🚚 App Reparto — Distribución y reparto' },
+  { value: 'docente', label: '📚 App Docente — Gestión educativa' },
+  { value: 'eventos', label: '🏟️ App Eventos — Quinchos y salones' },
+  { value: 'gastronomia', label: '🍽️ App Gastronomía — Próximamente (anotarme)' },
+];
+---
+
+<Layout title="Empezar gratis" description="Registrate para acceder a tu prueba gratuita de 28 días.">
+  <section class="max-w-lg mx-auto px-4 py-20">
+
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm px-4 py-1.5 rounded-full mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+        28 días gratis · Sin tarjeta
+      </div>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Empezar prueba gratis</h1>
+      <p class="text-slate-400">Completá el formulario y en menos de 24 horas te activamos el acceso.</p>
+    </div>
+
+    <form id="registro-form" class="bg-[#13131a] border border-white/5 rounded-2xl p-8 flex flex-col gap-5">
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-slate-300" for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" required placeholder="Juan"
+            class="bg-[#0a0a0f] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500 transition-colors" />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-slate-300" for="apellido">Apellido</label>
+          <input id="apellido" name="apellido" type="text" required placeholder="García"
+            class="bg-[#0a0a0f] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500 transition-colors" />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-sm font-medium text-slate-300" for="email">Email de Gmail</label>
+        <input id="email" name="email" type="email" required placeholder="tu@gmail.com"
+          class="bg-[#0a0a0f] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500 transition-colors" />
+        <p class="text-xs text-slate-500">Usamos Google para el login, tiene que ser una cuenta Gmail.</p>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-sm font-medium text-slate-300" for="whatsapp">WhatsApp</label>
+        <input id="whatsapp" name="whatsapp" type="tel" required placeholder="2234 123456"
+          class="bg-[#0a0a0f] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500 transition-colors" />
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-sm font-medium text-slate-300" for="app">¿Qué app querés probar?</label>
+        <select id="app" name="app" required
+          class="bg-[#0a0a0f] border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors appearance-none">
+          <option value="" disabled selected>Seleccioná una app...</option>
+          {apps.map(a => (
+            <option value={a.value}>{a.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <button type="submit" id="submit-btn"
+        class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3.5 rounded-xl transition-colors text-sm mt-2">
+        Solicitar acceso gratuito →
+      </button>
+
+      <!-- Mensaje de estado (oculto por defecto) -->
+      <div id="form-msg" class="hidden rounded-xl px-4 py-3 text-sm text-center"></div>
+
+      <p class="text-xs text-slate-500 text-center">
+        Te activamos el acceso en menos de 24 horas por WhatsApp.
+      </p>
+
+    </form>
+
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('registro-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const msgBox = document.getElementById('form-msg') as HTMLDivElement;
+
+  const appLabels: Record<string, string> = {
+    turnos: 'App Turnos',
+    presup: 'App Presupuesto',
+    reparto: 'App Reparto',
+    docente: 'App Docente',
+    eventos: 'App Eventos',
+    gastronomia: 'App Gastronomía (lista de espera)',
+  };
+
+  // Mapeo al app_id que usa el SaaS central
+  const appIds: Record<string, string> = {
+    turnos: 'turnos',
+    presup: 'presup',
+    reparto: 'reparto',
+    docente: 'docentes',
+    eventos: 'quincho',
+    gastronomia: 'gastronomia',
+  };
+
+  // Links directos a cada app
+  const appUrls: Record<string, string> = {
+    turnos: 'https://app-turnos.vercel.app',
+    presup: 'https://app-presup.vercel.app',
+    reparto: 'https://app-reparto.vercel.app',
+    docente: 'https://app-docente.vercel.app',
+    eventos: 'https://quincho-bere.vercel.app',
+  };
+
+  function showMsg(text: string, type: 'error' | 'warning' | 'success') {
+    const colors = {
+      error: 'bg-red-500/10 border border-red-500/30 text-red-400',
+      warning: 'bg-amber-500/10 border border-amber-500/30 text-amber-400',
+      success: 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400',
+    };
+    msgBox.className = `rounded-xl px-4 py-3 text-sm text-center ${colors[type]}`;
+    msgBox.innerHTML = text;
+    msgBox.classList.remove('hidden');
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nombre = (document.getElementById('nombre') as HTMLInputElement).value.trim();
+    const apellido = (document.getElementById('apellido') as HTMLInputElement).value.trim();
+    const email = (document.getElementById('email') as HTMLInputElement).value.trim().toLowerCase();
+    const whatsapp = (document.getElementById('whatsapp') as HTMLInputElement).value.trim();
+    const app = (document.getElementById('app') as HTMLSelectElement).value;
+
+    msgBox.classList.add('hidden');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Verificando...';
+
+    try {
+      const res = await fetch('https://ngymvfvlknaltsvsrvjm.supabase.co/rest/v1/rpc/verificar_acceso_email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': 'sb_publishable_XhsLlwmbDz5ne7JoeEoVHw_Qo56KJmd',
+          'Authorization': 'Bearer sb_publishable_XhsLlwmbDz5ne7JoeEoVHw_Qo56KJmd',
+        },
+        body: JSON.stringify({ email_param: email, app_id_param: appIds[app] || app }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data && (data.tiene_acceso || data.estado === 'activo' || data.estado === 'demo' || data.estado === 'impago')) {
+          const appUrl = appUrls[app];
+          const linkHtml = appUrl
+            ? `<br><a href="${appUrl}" target="_blank" class="underline font-semibold">Ir a ${appLabels[app]}</a>`
+            : '';
+          showMsg(`Este Gmail ya tiene una cuenta en ${appLabels[app] || app}. Entrá directamente con Google.${linkHtml}`, 'warning');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Solicitar acceso gratuito →';
+          return;
+        }
+      }
+    } catch (_) {
+      // Si el fetch falla, continuamos normalmente para no bloquear al usuario
+    }
+
+    // No tiene cuenta — abrir WhatsApp
+    const msg = `Hola! Quiero empezar la prueba gratis 🙌
+
+*Nombre:* ${nombre} ${apellido}
+*Email Gmail:* ${email}
+*WhatsApp:* ${whatsapp}
+*App:* ${appLabels[app] || app}`;
+
+    window.open(`https://wa.me/542235767784?text=${encodeURIComponent(msg)}`, '_blank');
+
+    // Redirigir a página de confirmación
+    window.location.href = '/gracias';
+  });
+</script>

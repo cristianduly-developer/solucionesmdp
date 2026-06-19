@@ -1,17 +1,526 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+const apps = [
+  {
+    slug: 'turnos',
+    name: 'App Turnos',
+    tagline: 'Agenda online para estética, belleza y salud',
+    description: 'Reservas 24/7, gestión de clientes y agenda diaria. Para peluquerías, kinesiólogos, masajistas, nutricionistas y más.',
+    colorClass: 'text-emerald-400',
+    borderClass: 'border-emerald-500/30 hover:border-emerald-500/60',
+    badgeClass: 'bg-emerald-500/10 text-emerald-400',
+    icon: '💇',
+    features: ['Reservas online 24/7', 'Link propio del negocio', 'Múltiples profesionales', 'Señas y cobros'],
+  },
+  {
+    slug: 'presup',
+    name: 'App Presupuesto',
+    tagline: 'El sistema operativo de tu oficio',
+    description: 'Presupuestos profesionales en 2 minutos, firma digital del cliente y seguimiento de obras desde el celular.',
+    colorClass: 'text-slate-400',
+    borderClass: 'border-slate-500/30 hover:border-slate-400/60',
+    badgeClass: 'bg-slate-500/10 text-slate-400',
+    icon: '🔧',
+    features: ['PDF con firma digital', 'Gestión de obras', 'Reportes financieros', 'Agenda de visitas'],
+  },
+  {
+    slug: 'reparto',
+    name: 'App Reparto',
+    tagline: 'Gestioná tu reparto sin papel ni Excel',
+    description: 'Pedidos, rutas, stock y cobros — incluso sin internet. Para distribuidores que salen a repartir todos los días.',
+    colorClass: 'text-blue-400',
+    borderClass: 'border-blue-500/30 hover:border-blue-500/60',
+    badgeClass: 'bg-blue-500/10 text-blue-400',
+    icon: '🚚',
+    features: ['100% offline', 'Ruta optimizada con IA', 'Cuentas corrientes', 'Multi-usuario con roles'],
+  },
+  {
+    slug: 'docente',
+    name: 'App Docente',
+    tagline: 'Gestión para maestras de apoyo',
+    description: 'Registros de clase por voz, adaptaciones curriculares con IA e informes PDF listos para entregar.',
+    colorClass: 'text-green-400',
+    borderClass: 'border-green-500/30 hover:border-green-500/60',
+    badgeClass: 'bg-green-500/10 text-green-400',
+    icon: '📚',
+    features: ['Registros por voz + IA', 'Adaptación de tareas', 'Informes PDF con firma', 'Fichas de alumnos'],
+  },
+  {
+    slug: 'eventos',
+    name: 'App Eventos',
+    tagline: 'Reservas de espacios sin caos',
+    description: 'Calendario de disponibilidad, cobros parciales y recordatorios por WhatsApp para quinchos, salones y canchas.',
+    colorClass: 'text-amber-600',
+    borderClass: 'border-amber-700/30 hover:border-amber-700/60',
+    badgeClass: 'bg-amber-700/10 text-amber-600',
+    icon: '🏟️',
+    badge: 'Prueba gratis',
+    features: ['Temporadas de precios', 'WhatsApp integrado', 'Múltiples espacios', 'Señas y pagos parciales'],
+  },
+  {
+    slug: 'gastronomia',
+    name: 'App Gastronomía',
+    tagline: 'Tu local, todo en tiempo real',
+    description: 'Mesas, comandas, cocina y delivery desde una sola app. Para food trucks, rotiserías y restaurantes con salón.',
+    colorClass: 'text-orange-400',
+    borderClass: 'border-orange-500/30 hover:border-orange-500/60',
+    badgeClass: 'bg-orange-500/10 text-orange-400',
+    icon: '🍽️',
+    badge: 'Prueba gratis',
+    features: ['Mesas en tiempo real', 'Monitor de cocina', 'Menú QR con pedidos', 'Delivery integrado'],
+  },
+  {
+    slug: 'membresias',
+    name: 'App Membresías',
+    tagline: 'Socios, cobros y asistencia sin perseguir a nadie',
+    description: 'Para gimnasios, academias, clubes y estudios. Gestioná socios, membresías y cobros desde el celular — con recordatorios automáticos de vencimiento.',
+    colorClass: 'text-teal-400',
+    borderClass: 'border-teal-500/30 hover:border-teal-500/60',
+    badgeClass: 'bg-teal-500/10 text-teal-400',
+    icon: '🏋️',
+    badge: 'Próximamente',
+    features: ['Socios y membresías', 'Control de asistencia', 'Alertas de vencimiento', 'Reportes de morosidad'],
+  },
+  {
+    slug: 'web',
+    name: 'Web para tu negocio',
+    tagline: 'Tu presencia online, sin complicaciones',
+    description: 'Diseñamos y publicamos el sitio de tu negocio en menos de una semana. Rápido, mobile y listo para compartir.',
+    colorClass: 'text-violet-400',
+    borderClass: 'border-violet-500/30 hover:border-violet-500/60',
+    badgeClass: 'bg-violet-500/10 text-violet-400',
+    icon: '🌐',
+    badge: 'A medida',
+    features: ['Landing page profesional', 'Dominio .com.ar incluido', 'Optimizado para Google', 'Entrega en 5–7 días'],
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Inicio" description="Apps para negocios argentinos. Sin instalación, sin papeles, desde el celular.">
+
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-4 pt-24 pb-20 text-center">
+    <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm px-4 py-1.5 rounded-full mb-8">
+      <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+      Soluciones digitales · Mar del Plata, Argentina
+    </div>
+    <h1 id="hero-title" class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6" aria-label="La app que tu negocio estaba esperando">
+      <span class="hero-line-1"></span><br/>
+      <span class="hero-line-2 text-indigo-400"></span>
+    </h1>
+    <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-6">
+      Herramientas diseñadas para rubros específicos. Sin instalación, sin papeles, desde el celular.
+    </p>
+    <p class="text-slate-500 text-sm mb-10">
+      Planes desde <span class="text-emerald-400 font-semibold">$25.000/mes</span> · 28 días de prueba gratis · Sin tarjeta de crédito
+      <br/><span class="text-slate-600 text-xs">Precios en pesos argentinos · Se actualizan semestralmente</span>
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#apps" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-8 py-3.5 rounded-xl transition-colors text-lg">
+        Ver todas las apps
+      </a>
+      <a href="https://wa.me/542235767784" target="_blank"
+        class="border border-white/10 hover:border-white/20 text-slate-300 hover:text-white font-semibold px-8 py-3.5 rounded-xl transition-colors text-lg">
+        Hablar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- Nav rápido mobile -->
+  <nav class="md:hidden sticky top-16 z-40 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-white/5 px-4 py-3">
+    <div class="flex gap-2 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-1 -mb-1">
+      {[
+        { label: '📱 Apps', href: '#apps' },
+        { label: '⚡ Cómo funciona', href: '#como-funciona' },
+        { label: '⭐ Opiniones', href: '#opiniones' },
+        { label: '❓ FAQ', href: '#faq' },
+        { label: '💡 Sugerencias', href: '#contacto' },
+        { label: '💬 WhatsApp', href: 'https://wa.me/542235767784', external: true },
+      ].map(chip => (
+        <a
+          href={chip.href}
+          target={chip.external ? '_blank' : undefined}
+          class="snap-start flex-shrink-0 text-xs font-medium px-3.5 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-indigo-300 transition-colors whitespace-nowrap"
+        >
+          {chip.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <!-- Stats -->
+  <section class="border-y border-white/5 bg-white/[0.02] py-12">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <div class="text-3xl font-bold text-white">Apps</div>
+        <div class="text-sm text-slate-500 mt-1">En producción</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-emerald-400">$25.000</div>
+        <div class="text-sm text-slate-500 mt-1">Por mes desde</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-white">IA</div>
+        <div class="text-sm text-slate-500 mt-1">Incluida en todas</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-white">28d</div>
+        <div class="text-sm text-slate-500 mt-1">Demo gratis</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo funciona -->
+  <section id="como-funciona" class="max-w-4xl mx-auto px-4 py-24">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Tres pasos y ya estás</h2>
+      <p class="text-slate-400 text-lg">Sin formularios largos, sin reuniones, sin instalaciones.</p>
+    </div>
+    <div class="relative">
+      <!-- Línea conectora (desktop) -->
+      <div class="hidden md:block absolute top-10 left-[calc(16.666%+1rem)] right-[calc(16.666%+1rem)] h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+      <div class="grid md:grid-cols-3 gap-8 md:gap-6">
+        {[
+          {
+            n: '01',
+            icon: '🎯',
+            title: 'Elegís la app de tu rubro',
+            desc: 'Buscás la que se adapta a tu negocio, leés las funciones y apretás "Empezar prueba gratis".',
+            color: 'border-indigo-500/30 bg-indigo-500/5',
+            nColor: 'text-indigo-400',
+          },
+          {
+            n: '02',
+            icon: '⚡',
+            title: 'Te activamos el acceso',
+            desc: 'En menos de 24 horas recibís el link de acceso por WhatsApp. Plan Profesional completo, sin costo.',
+            color: 'border-indigo-400/40 bg-indigo-400/8',
+            nColor: 'text-indigo-300',
+          },
+          {
+            n: '03',
+            icon: '🚀',
+            title: 'Empezás a usarla',
+            desc: 'Entrás con tu Gmail, configurás tu negocio en minutos y empezás a operar desde el celular.',
+            color: 'border-indigo-300/50 bg-indigo-300/5',
+            nColor: 'text-white',
+          },
+        ].map(step => (
+          <div class={`relative bg-[#13131a] border ${step.color} rounded-2xl p-7 flex flex-col gap-4`}>
+            <div class="flex items-center justify-between">
+              <span class="text-3xl">{step.icon}</span>
+              <span class={`text-5xl font-black ${step.nColor} opacity-20 leading-none`}>{step.n}</span>
+            </div>
+            <h3 class="font-bold text-white text-lg leading-snug">{step.title}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="text-center mt-12">
+      <a href="/registro"
+        class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors">
+        Empezar ahora — es gratis
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Apps grid -->
+  <section id="apps" class="max-w-6xl mx-auto px-4 py-24">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Elegí la app de tu rubro</h2>
+      <p class="text-slate-400 text-lg">Cada una está diseñada específicamente para su sector.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+      {apps.map(app => (
+        <a href={`/${app.slug}`}
+          class={`group relative bg-[#13131a] border ${app.borderClass} rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1`}>
+          {app.slug === 'web' && (
+            <div class="absolute -top-3 -right-3 bg-gradient-to-br from-violet-500 to-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg shadow-violet-500/30 rotate-6">
+              ✨ Nuevo
+            </div>
+          )}
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-4xl">{app.icon}</span>
+            <span class={`text-xs font-medium px-2.5 py-1 rounded-full ${app.badgeClass}`}>
+              {app.badge || 'Prueba gratis'}
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-1">{app.name}</h3>
+          <p class={`text-sm font-medium mb-3 ${app.colorClass}`}>{app.tagline}</p>
+          <p class="text-sm text-slate-400 mb-5 leading-relaxed">{app.description}</p>
+          <ul class="space-y-2">
+            {app.features.map(f => (
+              <li class="flex items-center gap-2 text-sm text-slate-400">
+                <svg class={`w-4 h-4 flex-shrink-0 ${app.colorClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <div class={`mt-6 flex items-center gap-1 text-sm font-medium ${app.colorClass}`}>
+            Ver más
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+
+  <!-- Por qué elegirnos -->
+  <section class="border-t border-white/5 bg-white/[0.02] py-24">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Sin complicaciones</h2>
+        <p class="text-slate-400 text-lg">Diseñadas para empezar a usar en minutos, no en semanas.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {[
+          { icon: '📱', title: 'Sin instalación', desc: 'Funcionan desde el navegador del celular. Podés instalarlas como app nativa con un toque, sin pasar por ninguna tienda.' },
+          { icon: '🚀', title: 'Prueba gratis', desc: 'Hasta 28 días de acceso completo, sin tarjeta de crédito. Empezás a usarla y decidís si se adapta a tu negocio.' },
+          { icon: '🇦🇷', title: 'Hechas para Argentina', desc: 'Precios en pesos, integración nativa con WhatsApp, soporte local. Nada de traducciones ni configuraciones raras.' },
+          { icon: '🤖', title: 'Inteligencia artificial', desc: 'IA incluida para automatizar tareas repetitivas: adaptaciones, parseo de pedidos, sugerencias de ruta y más.' },
+          { icon: '🔒', title: 'Tus datos, seguros', desc: 'Cada negocio tiene sus datos aislados. Login con Google, sin contraseñas que recordar.' },
+          { icon: '💬', title: 'Soporte directo', desc: 'Hablás con quien desarrolló la app, no con un chatbot. Respuesta por WhatsApp el mismo día.' },
+        ].map(item => (
+          <div class="bg-[#13131a] border border-white/5 rounded-2xl p-6">
+            <div class="text-3xl mb-4">{item.icon}</div>
+            <h3 class="font-semibold text-white mb-2">{item.title}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section id="opiniones" class="max-w-6xl mx-auto px-4 py-24">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Lo que dicen quienes las usan</h2>
+      <p class="text-slate-400 text-lg">Negocios reales, resultados reales.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[
+        { name: 'Sabrina M.', role: 'Manicura · Mar del Plata', app: 'App Turnos', color: 'text-emerald-400', comment: 'La empecé a usar y no pude parar. Mis clientas reservan solas a cualquier hora y yo me entero al toque. Me ahorró un montón de idas y vueltas por WhatsApp.' },
+        { name: 'Roberto S.', role: 'Plomero · Buenos Aires', app: 'App Presupuesto', color: 'text-slate-400', comment: 'Antes tardaba media hora en hacer un presupuesto en Word. Ahora lo hago en dos minutos y el cliente lo firma desde el celular. Una locura.' },
+        { name: 'Marcos V.', role: 'Distribuidor de agua · Rosario', app: 'App Reparto', color: 'text-blue-400', comment: 'Tenía todo en un cuaderno y siempre se me pasaba algo. Ahora el repartidor lleva el celular y ya sabe qué entregar en cada parada. Cero errores.' },
+        { name: 'Florencia P.', role: 'Maestra integradora · CABA', app: 'App Docente', color: 'text-green-400', comment: 'El registro por voz me cambió la vida. Salgo de cada clase y dicto lo que pasó en 30 segundos. Antes me llevaba media hora escribirlo al llegar a casa.' },
+        { name: 'Hernán L.', role: 'Dueño de quincho · Mar del Plata', app: 'App Eventos', color: 'text-amber-600', comment: 'Ya no tengo que estar con el Excel para ver si el quincho estaba libre. El calendario lo dice solo y los clientes me pagan la seña por transferencia.' },
+        { name: 'Alejandro V.', role: 'Electricista · Córdoba', app: 'App Presupuesto', color: 'text-slate-400', comment: 'Lo mejor es el seguimiento de obras. Sé exactamente cuánto me deben en cada trabajo y tengo todo el historial de pagos. Nunca más perdí una cobranza.' },
+      ].map(t => (
+        <div class="bg-[#13131a] border border-white/5 rounded-2xl p-6 flex flex-col gap-4">
+          <div class="flex gap-1">
+            {[1,2,3,4,5].map(() => (
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            ))}
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed flex-1">"{t.comment}"</p>
+          <div>
+            <p class="font-semibold text-white text-sm">{t.name}</p>
+            <p class="text-xs text-slate-500">{t.role}</p>
+            <p class={`text-xs font-medium mt-1 ${t.color}`}>{t.app}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Sugerí una app -->
+  <section id="contacto" class="border-t border-white/5 bg-white/[0.02] py-24">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <div class="text-5xl mb-6">💡</div>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ayudanos a crecer</h2>
+      <p class="text-slate-400 text-lg mb-10">
+        ¿Tenés un negocio y no encontraste la app que necesitás? Contanos qué hace tu rubro — si hay suficiente demanda, lo construimos.
+      </p>
+      <form id="sugerencia-form" class="bg-[#13131a] border border-white/5 rounded-2xl p-8 text-left flex flex-col gap-5">
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-slate-300" for="rubro">¿A qué te dedicás?</label>
+          <input id="rubro" type="text" placeholder="Ej: soy veterinario, tengo una ferretería, hago fletes..."
+            class="bg-[#0a0a0f] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500 transition-colors" />
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-slate-300" for="problema">¿Qué problema querías resolver con una app?</label>
+          <textarea id="problema" rows={3} placeholder="Ej: necesito organizar los turnos, llevar el stock, facturar más rápido..."
+            class="bg-[#0a0a0f] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"></textarea>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-slate-300" for="contacto-sug">Tu WhatsApp (opcional)</label>
+          <input id="contacto-sug" type="tel" placeholder="2234 123456"
+            class="bg-[#0a0a0f] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500 transition-colors" />
+        </div>
+        <button type="submit"
+          class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3.5 rounded-xl transition-colors text-sm">
+          Mandar sugerencia →
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-3xl mx-auto px-4 py-24">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Preguntas frecuentes</h2>
+      <p class="text-slate-400 text-lg">Las dudas que casi todos tienen antes de empezar.</p>
+    </div>
+    <div class="flex flex-col gap-3" id="faq-list">
+      {[
+        {
+          q: '¿Necesito tarjeta de crédito para la prueba gratis?',
+          a: 'No. La prueba dura 28 días y es completamente gratis. No pedimos datos de pago en ningún momento. Cuando termina el período, te avisamos y decidís si querés continuar.',
+        },
+        {
+          q: '¿Cómo funciona el login? ¿Tengo que crear un usuario y contraseña?',
+          a: 'No hay usuario ni contraseña. Entrás con tu cuenta de Gmail — el mismo Google que ya usás. Por eso pedimos un email @gmail.com al registrarte.',
+        },
+        {
+          q: '¿Funciona en iPhone y en Android?',
+          a: 'Sí. Todas las apps funcionan desde el navegador del celular, sin pasar por la App Store ni el Play Store. También podés instalarlas como app nativa tocando "Agregar a pantalla de inicio" en tu navegador.',
+        },
+        {
+          q: '¿Qué pasa con mis datos cuando termina la prueba?',
+          a: 'Tus datos quedan guardados. Si decidís suscribirte, continuás exactamente desde donde dejaste — clientes, historial, configuración, todo. No hay que empezar de cero.',
+        },
+        {
+          q: '¿Puedo usar la app sin internet?',
+          a: 'Depende de la app. App Reparto funciona completamente sin conexión y sincroniza cuando volvés a tener señal. Las demás necesitan internet para funcionar, pero están optimizadas para conexiones lentas.',
+        },
+        {
+          q: '¿Cuánto cuesta después de los 28 días?',
+          a: 'Los planes arrancan desde $25.000/mes. El precio exacto depende de la app y el plan que necesitás. Hablamos por WhatsApp y te recomendamos el que más te conviene según el tamaño de tu negocio.',
+        },
+        {
+          q: '¿Puedo tener varios usuarios en la misma cuenta?',
+          a: 'Sí. Los planes Profesional y Premium incluyen colaboradores adicionales. Cada usuario tiene su propio acceso con Google y ve los datos compartidos de la organización.',
+        },
+        {
+          q: '¿Con quién hablo si tengo un problema?',
+          a: 'Con el mismo desarrollador que hizo la app. No hay sistema de tickets ni chatbot. Respondemos por WhatsApp el mismo día, en general en pocas horas.',
+        },
+      ].map((item, i) => (
+        <div class="bg-[#13131a] border border-white/5 rounded-2xl overflow-hidden">
+          <button
+            class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between gap-4 text-white font-medium text-sm hover:text-indigo-400 transition-colors"
+            data-faq={i}
+          >
+            <span>{item.q}</span>
+            <svg class="w-4 h-4 flex-shrink-0 text-slate-500 faq-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5">
+            <p class="text-slate-400 text-sm leading-relaxed">{item.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="max-w-6xl mx-auto px-4 py-24 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿No sabés por dónde empezar?</h2>
+    <p class="text-slate-400 text-lg mb-8 max-w-xl mx-auto">
+      Contanos qué hace tu negocio y te recomendamos la app que más te sirve — sin compromiso.
+    </p>
+    <a href="/registro"
+      class="inline-flex items-center gap-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-8 py-4 rounded-xl transition-colors text-lg">
+      Empezar prueba gratis
+    </a>
+  </section>
+
+</Layout>
+
+<style>
+  @keyframes letter-glow {
+    0%   { opacity: 1; color: rgba(255,255,255,0.12); text-shadow: none; }
+    40%  { opacity: 1; color: #fff; text-shadow: 0 0 18px rgba(255,255,255,0.9), 0 0 40px rgba(165,180,252,0.5); }
+    100% { opacity: 1; color: #fff; text-shadow: none; }
+  }
+  @keyframes letter-glow-indigo {
+    0%   { opacity: 1; color: rgba(99,102,241,0.12); text-shadow: none; }
+    40%  { opacity: 1; color: #a5b4fc; text-shadow: 0 0 18px rgba(165,180,252,1), 0 0 40px rgba(99,102,241,0.7); }
+    100% { opacity: 1; color: #818cf8; text-shadow: none; }
+  }
+  .hero-letter {
+    display: inline-block;
+    opacity: 0;
+    animation: letter-glow 0.7s ease forwards;
+  }
+  .hero-letter-indigo {
+    display: inline-block;
+    opacity: 0;
+    animation: letter-glow-indigo 0.7s ease forwards;
+  }
+</style>
+
+<script>
+  // Iluminación letra por letra del hero
+  const line1El = document.querySelector('.hero-line-1');
+  const line2El = document.querySelector('.hero-line-2');
+  const text1 = 'La app que tu negocio';
+  const text2 = 'estaba esperando';
+  const BASE_DELAY = 80; // ms por letra
+
+  if (line1El && line2El) {
+    text1.split('').forEach((ch, i) => {
+      const s = document.createElement('span');
+      s.className = 'hero-letter';
+      s.textContent = ch === ' ' ? ' ' : ch;
+      s.style.animationDelay = `${i * BASE_DELAY}ms`;
+      line1El.appendChild(s);
+    });
+    text2.split('').forEach((ch, i) => {
+      const s = document.createElement('span');
+      s.className = 'hero-letter-indigo';
+      s.textContent = ch === ' ' ? ' ' : ch;
+      s.style.animationDelay = `${(text1.length + i) * BASE_DELAY}ms`;
+      line2El.appendChild(s);
+    });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      const isOpen = !answer.classList.contains('hidden');
+      // Cerrar todos
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(ic => ic.classList.remove('rotate-180'));
+      // Abrir este si estaba cerrado
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    });
+  });
+
+  const form = document.getElementById('sugerencia-form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const rubro = (document.getElementById('rubro') as HTMLInputElement).value.trim();
+    const problema = (document.getElementById('problema') as HTMLTextAreaElement).value.trim();
+    const contacto = (document.getElementById('contacto-sug') as HTMLInputElement).value.trim();
+
+    if (!rubro && !problema) return;
+
+    const msg = `💡 *Nueva sugerencia de app*
+
+*Rubro:* ${rubro || '(no indicó)'}
+*Problema:* ${problema || '(no indicó)'}
+*Contacto:* ${contacto || '(no dejó)'}`;
+
+    window.open(`https://wa.me/542235767784?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+</script>

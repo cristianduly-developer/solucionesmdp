@@ -1,0 +1,146 @@
+---
+import '../styles/global.css';
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+const {
+  title,
+  description = "Apps para negocios argentinos. Sin instalación, sin papeles, desde el celular.",
+  ogImage = "/og-image.svg",
+} = Astro.props;
+
+const siteUrl = "https://soluciones-mdp.vercel.app";
+const fullTitle = title === "Inicio" ? "Soluciones MDP — Apps para negocios argentinos" : `${title} | Soluciones MDP`;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{fullTitle}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Soluciones MDP" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Twitter / WhatsApp -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-[#0a0a0f] text-slate-100 font-['Inter',sans-serif] antialiased overflow-x-hidden">
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#0a0a0f]/80 backdrop-blur-md">
+      <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+        <a href="/" class="text-lg font-bold tracking-tight text-white">
+          Soluciones<span class="text-indigo-400">MDP</span>
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
+          <a href="/turnos" class="hover:text-emerald-400 transition-colors">Turnos</a>
+          <a href="/presup" class="hover:text-slate-300 transition-colors">Presup</a>
+          <a href="/reparto" class="hover:text-blue-400 transition-colors">Reparto</a>
+          <a href="/docente" class="hover:text-green-400 transition-colors">Docente</a>
+          <a href="/eventos" class="hover:text-amber-600 transition-colors">Eventos</a>
+          <a href="/gastronomia" class="hover:text-orange-400 transition-colors">Gastro</a>
+          <a href="/membresias" class="hover:text-teal-400 transition-colors">Membresías</a>
+          <a href="/web" class="hover:text-violet-400 transition-colors">Web</a>
+        </div>
+        <a href="https://wa.me/542235767784" target="_blank"
+          class="text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg transition-colors">
+          Consultar
+        </a>
+      </div>
+    </nav>
+    <!-- Scroll beam — solo desktop -->
+    <div class="fixed left-6 xl:left-10 top-0 bottom-0 pointer-events-none z-30 hidden lg:block" aria-hidden="true">
+      <!-- Track faint -->
+      <div class="absolute left-1/2 -translate-x-1/2 top-16 bottom-0 w-px bg-white/[0.04]"></div>
+      <!-- Línea rellena -->
+      <div id="beam-fill"
+        class="absolute left-1/2 -translate-x-1/2 top-16 w-px origin-top"
+        style="height: calc(100% - 4rem); transform-origin: top; transform: scaleY(0) translateX(-50%); background: linear-gradient(to bottom, transparent, #818cf8 40%, #a5b4fc);">
+      </div>
+      <!-- Spark en la punta -->
+      <div id="beam-spark"
+        class="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full"
+        style="top: 4rem; background: #c7d2fe; box-shadow: 0 0 6px 3px rgba(165,180,252,0.9), 0 0 20px 6px rgba(129,140,248,0.5); opacity: 0;">
+      </div>
+      <!-- Halo suave que sigue al spark -->
+      <div id="beam-halo"
+        class="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full -translate-y-1/2"
+        style="top: 4rem; background: radial-gradient(circle, rgba(129,140,248,0.15) 0%, transparent 70%); opacity: 0;">
+      </div>
+    </div>
+
+    <main class="pt-16">
+      <slot />
+    </main>
+    <footer class="border-t border-white/5 mt-24 py-12">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+        <p>© 2025 Soluciones MDP. Mar del Plata, Argentina.</p>
+        <a href="https://wa.me/542235767784" target="_blank" class="hover:text-white transition-colors">
+          Contacto por WhatsApp
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script>
+  const fill = document.getElementById('beam-fill');
+  const spark = document.getElementById('beam-spark');
+  const halo = document.getElementById('beam-halo');
+  if (fill && spark && halo) {
+    const OFFSET = 64; // altura del nav
+    let ticking = false;
+
+    function update() {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = total > 0 ? Math.min(scrolled / total, 1) : 0;
+
+      // La línea crece desde 0 hasta el 100% del track
+      fill.style.transform = `scaleY(${progress}) translateX(-50%)`;
+
+      // El spark y el halo se mueven al frente de la línea
+      const trackHeight = window.innerHeight - OFFSET;
+      const y = OFFSET + progress * trackHeight;
+      spark.style.top = `${y}px`;
+      halo.style.top = `${y}px`;
+
+      // Fade in al empezar a scrollear, fade out al llegar al final
+      const opacity = progress > 0.01 && progress < 0.99 ? 1 : 0;
+      spark.style.opacity = String(opacity);
+      halo.style.opacity = String(opacity * 0.8);
+
+      // Pequeño pulso: escala el spark ligeramente con el scroll
+      const pulse = 1 + Math.sin(scrolled * 0.05) * 0.3;
+      spark.style.transform = `translateX(-50%) scale(${pulse})`;
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Estado inicial
+    update();
+  }
+</script>

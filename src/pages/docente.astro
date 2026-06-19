@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AppPage from '../components/AppPage.astro';
+---
+<Layout title="App Docente" description="Gestión para maestras de apoyo y docentes de modalidad especial. Registros por voz, adaptaciones con IA e informes PDF.">
+  <AppPage
+    name="App Docente"
+    tagline="Gestión para maestras de apoyo y modalidad especial"
+    description="Centralizá tus alumnos, dictá registros de clase por voz y generá adaptaciones curriculares personalizadas con IA — todo desde el celular. La IA conoce el diagnóstico, terapias y registros previos de cada alumno."
+    icon="📚"
+    screenshots={['/screenshots/docente/mapa-dia.jpg', '/screenshots/docente/ficha-alumno.jpg', '/screenshots/docente/adaptar-tarea.jpg', '/screenshots/docente/reportes.jpg']}
+    audience="Maestras de apoyo · Docentes de modalidad especial"
+    accentColor="bg-green-600"
+    accentBg="bg-green-500/10"
+    accentBorder="border-green-500/30"
+    accentText="text-green-400"
+    ctaUrl="https://aye-app-one.vercel.app"
+    differentiators={[
+      'IA contextual por alumno',
+      'Registros de clase por voz',
+      'Informes PDF con firma',
+      'Fichas completas de alumnos',
+      'Sin instalación (PWA)',
+      'Acceso por invitación',
+      'Exportación por WhatsApp',
+      'Resumen nocturno con IA',
+    ]}
+    features={[
+      { icon: '🗺️', title: 'Mapa del día', desc: 'Visualizá toda tu jornada: alumnos, horarios y escuelas de un vistazo. Sabés qué tenés que hacer antes de salir de casa.' },
+      { icon: '🎤', title: 'Registros por voz', desc: 'Dictás lo que pasó en clase y la IA transcribe y organiza automáticamente. Sin tipear, sin perder tiempo — ideal para registrar entre clase y clase.' },
+      { icon: '🧠', title: 'Adaptación de tareas con IA', desc: 'Describís la tarea de la semana y la IA la adapta teniendo en cuenta el diagnóstico, terapias actuales y registros previos del alumno. No es una respuesta genérica.' },
+      { icon: '🎨', title: 'Actividades individualizadas', desc: 'Generá actividades específicas para cada alumno con un clic. Exportables en PDF o enviables directamente al docente por WhatsApp.' },
+      { icon: '📁', title: 'Fichas completas', desc: 'Diagnóstico, CUD, terapias, tutores, docentes, trayectoria escolar y registros de cada clase en un solo lugar. Todo el historial del alumno siempre a mano.' },
+      { icon: '📄', title: 'Informes PDF con firma', desc: 'Generá informes profesionales con tu firma, listos para entregar en la escuela, a directivos o a las familias.' },
+      { icon: '📞', title: 'Directorio', desc: 'Escuelas, docentes, EOE y profesionales terapéuticos organizados con datos de contacto. Llamás directamente desde la app.' },
+      { icon: '🌙', title: 'Resumen nocturno', desc: 'Repaso automático del día generado con IA. No perdés ningún detalle de lo que pasó con cada alumno.' },
+      { icon: '💬', title: 'Exportación por WhatsApp', desc: 'Enviá reportes, actividades e informes directamente desde la app por WhatsApp al docente, tutor o directivo.' },
+    ]}
+    plans={[
+      {
+        name: 'Básico',
+        features: [
+          'Hasta 15 alumnos',
+          'Fichas completas',
+          'Registros por voz + IA',
+          'Mapa del día',
+          'Directorio',
+          'Exportación PDF',
+        ],
+      },
+      {
+        name: 'Profesional',
+        highlight: true,
+        badge: 'Más elegido',
+        features: [
+          'Hasta 25 alumnos',
+          'Todo lo del plan Básico',
+          'Adaptación de tareas con IA',
+          'Actividades individualizadas',
+          'Informes PDF con firma',
+          'Resumen nocturno con IA',
+        ],
+      },
+      {
+        name: 'Premium',
+        features: [
+          'Alumnos ilimitados',
+          'Todo lo del plan Profesional',
+          'IA sin límites de uso',
+          'Soporte prioritario',
+          'Acceso anticipado a nuevas features',
+        ],
+      },
+    ]}
+  />
+</Layout>
