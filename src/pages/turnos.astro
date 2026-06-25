@@ -2,14 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import AppPage from '../components/AppPage.astro';
 ---
-<Layout title="App Turnos" description="Agenda online para estética y belleza. Reservas 24/7, link propio y gestión de clientes desde el celular.">
+<Layout title="App Turnos" description="Agenda online para turnos y reservas. Reservas 24/7, link propio y gestión de clientes desde el celular.">
   <AppPage
     name="App Turnos"
-    tagline="Agenda online para estética y belleza"
-    description="Reemplazá el cuaderno y los turnos por WhatsApp con una agenda digital inteligente. Tus clientas reservan solas, 24/7, desde el link de tu negocio — vos gestionás todo desde el celular."
-    icon="💇"
+    tagline="Agenda online para tu negocio"
+    description="Reemplazá el cuaderno y los turnos por WhatsApp con una agenda digital inteligente. Tus clientes reservan solos, 24/7, desde el link de tu negocio — vos gestionás todo desde el celular."
+    icon="📅"
     screenshots={['/screenshots/turnos/inicio.jpg', '/screenshots/turnos/agenda.jpg', '/screenshots/turnos/clientes.jpg', '/screenshots/turnos/reportes.jpg']}
-    audience="Manicuras · Peluquerías · Barberías · Spas · Kinesiólogos · Masajistas · Nutricionistas · Psicólogos"
+    audience="Peluquerías · Barberías · Masajistas · Kinesiólogos · Spas · Nutricionistas · Psicólogos · Manicuras"
     accentColor="bg-emerald-600"
     accentBg="bg-emerald-500/10"
     accentBorder="border-emerald-500/30"
@@ -18,23 +18,23 @@ import AppPage from '../components/AppPage.astro';
     differentiators={[
       'Reservas online 24/7 sin app',
       'Link propio del negocio',
-      'Sin registro para la clienta',
+      'Sin registro para el cliente',
       'PWA instalable en el celular',
       'Notificaciones en tiempo real',
       'Señas para reducir ausencias',
-      'Historial de clientas',
+      'Historial de clientes',
       'Mobile-first',
     ]}
     features={[
       { icon: '📅', title: 'Agenda visual', desc: 'Timeline diario y semanal por horas, calendario mensual con puntos indicadores. Sabés de un vistazo cómo tenés el día.' },
-      { icon: '🔗', title: 'Link propio del negocio', desc: 'Cada negocio tiene su URL única (/r/tu-negocio) para compartir por WhatsApp, Instagram o bio. La clienta reserva en menos de 2 minutos, sin crear cuenta.' },
-      { icon: '💰', title: 'Señas y cobros', desc: 'Configurá seña fija o porcentaje del servicio. Alias de transferencia integrado. Reducís ausencias y aseguás el turno.' },
-      { icon: '👥', title: 'Múltiples profesionales', desc: 'Agregá profesionales con sus propios horarios, servicios y colores. Cada una tiene su agenda independiente (plan Profesional+).' },
-      { icon: '📋', title: 'Ficha por clienta', desc: 'Historial completo de visitas, notas de cada servicio (productos usados, alergias), lista negra y datos de contacto.' },
+      { icon: '🔗', title: 'Link propio del negocio', desc: 'Cada negocio tiene su URL única (/r/tu-negocio) para compartir por WhatsApp, Instagram o bio. El cliente reserva en menos de 2 minutos, sin crear cuenta.' },
+      { icon: '💰', title: 'Señas y cobros', desc: 'Configurá seña fija o porcentaje del servicio. Alias de transferencia integrado. Reducís ausencias y asegurás el turno.' },
+      { icon: '👥', title: 'Múltiples profesionales', desc: 'Agregá profesionales con sus propios horarios, servicios y colores. Cada uno tiene su agenda independiente (plan Profesional+).' },
+      { icon: '📋', title: 'Ficha por cliente', desc: 'Historial completo de visitas, notas de cada servicio (productos usados, alergias), lista negra y datos de contacto.' },
       { icon: '📊', title: 'Caja y reportes', desc: 'Recaudación del día, semana y mes. Turnos cobrados vs pendientes. Barra de progreso para ver cuántos turnos atendiste.' },
       { icon: '🛎️', title: 'Notificaciones push', desc: 'Recibís una notificación al instante cuando alguien reserva online. Sin necesidad de estar mirando la app.' },
-      { icon: '⚙️', title: 'Onboarding en 3 pasos', desc: 'Nombre del negocio, datos personales y carga de servicios. En minutos estás lista para recibir turnos.' },
-      { icon: '🚫', title: 'Cancelaciones con anticipación', desc: 'Definís cuántos días de anticipación mínima necesitás para que la clienta cancele o reprograme.' },
+      { icon: '⚙️', title: 'Onboarding en 3 pasos', desc: 'Nombre del negocio, datos personales y carga de servicios. En minutos estás listo para recibir turnos.' },
+      { icon: '🚫', title: 'Cancelaciones con anticipación', desc: 'Definís cuántos días de anticipación mínima necesitás para que el cliente cancele o reprograme.' },
     ]}
     plans={[
       {

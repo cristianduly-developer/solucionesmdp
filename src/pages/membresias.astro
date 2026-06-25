@@ -1,65 +1,76 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const WA = 'https://wa.me/542235767784';
+import AppPage from '../components/AppPage.astro';
 ---
-<Layout title="App Membresías" description="Gestión de socios, membresías y asistencia para gimnasios, academias, clubes y estudios. Próximamente.">
-  <section class="max-w-2xl mx-auto px-4 py-28 text-center">
-
-    <div class="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/20 text-teal-400 text-sm px-4 py-1.5 rounded-full mb-8">
-      <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
-      En desarrollo · Próximamente
-    </div>
-
-    <div class="text-6xl mb-6">🏋️</div>
-
-    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
-      App <span class="text-teal-400">Membresías</span>
-    </h1>
-    <p class="text-xl text-teal-400 font-medium mb-4">Socios, cobros y asistencia sin perseguir a nadie</p>
-    <p class="text-slate-400 text-lg leading-relaxed mb-10">
-      Para gimnasios, academias de danza, estudios de yoga, artes marciales, clubes deportivos y más.
-      Gestioná socios, membresías y cobros desde el celular — con recordatorios automáticos antes de que venzan.
-    </p>
-
-    <!-- Features preview -->
-    <div class="grid grid-cols-2 gap-3 mb-12 text-left">
-      {[
-        { icon: '👥', text: 'Socios con historial y estado' },
-        { icon: '💳', text: 'Membresías mensuales, trimestrales y anuales' },
-        { icon: '📲', text: 'Check-in por QR o manual' },
-        { icon: '⚠️', text: 'Alertas automáticas de vencimiento' },
-        { icon: '💰', text: 'Cobros: pagado, pendiente, vencido' },
-        { icon: '📊', text: 'Reporte de morosos y facturación' },
-      ].map(f => (
-        <div class="bg-[#13131a] border border-teal-500/10 rounded-xl p-4 flex items-start gap-3">
-          <span class="text-xl">{f.icon}</span>
-          <span class="text-sm text-slate-300 leading-snug">{f.text}</span>
-        </div>
-      ))}
-    </div>
-
-    <!-- Para quién -->
-    <div class="bg-[#13131a] border border-white/5 rounded-2xl p-6 mb-10 text-left">
-      <p class="text-xs font-semibold text-teal-400 uppercase tracking-widest mb-4">Para cualquier espacio con socios</p>
-      <div class="flex flex-wrap gap-2">
-        {['Gimnasios', 'Academias de danza', 'Estudios de yoga', 'Artes marciales', 'Crossfit', 'Clubes deportivos', 'Escuelas de tenis', 'Escuelas de pádel', 'Natatorios', 'Centros culturales', 'Talleres artísticos'].map(r => (
-          <span class="text-xs px-3 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-300">{r}</span>
-        ))}
-      </div>
-    </div>
-
-    <p class="text-slate-400 mb-6">¿Querés ser de los primeros en usarla? Anotate y te avisamos cuando esté lista.</p>
-
-    <div class="flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="/registro?app=membresias"
-        class="inline-flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-500 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors">
-        Anotarme en la lista
-      </a>
-      <a href={WA} target="_blank"
-        class="inline-flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white font-semibold px-6 py-3.5 rounded-xl transition-colors">
-        Consultar por WhatsApp
-      </a>
-    </div>
-
-  </section>
+<Layout title="App Membresías" description="Gestión de socios, membresías, check-in QR y cobros para gimnasios, clubes y espacios deportivos. Desde el celular o la PC.">
+  <AppPage
+    name="App Membresías"
+    tagline="Socios, cobros y asistencia sin perseguir a nadie"
+    description="Gestioná socios, membresías y cobros desde el celular o la PC. Check-in por QR, alertas de vencimiento automáticas y control total del gimnasio — sin planillas ni papeles."
+    icon="🏋️"
+    screenshots={['/screenshots/membresias/dashboard.jpg', '/screenshots/membresias/socios.jpg', '/screenshots/membresias/membresias.jpg', '/screenshots/membresias/actividades.jpg', '/screenshots/membresias/cobros.jpg']}
+    audience="Gimnasios · Crossfit · Artes marciales · Natatorios · Academias · Clubes deportivos"
+    accentColor="bg-teal-600"
+    accentBg="bg-teal-500/10"
+    accentBorder="border-teal-500/30"
+    accentText="text-teal-400"
+    ctaUrl="https://app-membresia.vercel.app"
+    differentiators={[
+      'Check-in por QR en segundos',
+      'Alertas de vencimiento automáticas',
+      'Roles: owner, recepcionista, profesor',
+      'Funciona en celu y PC',
+      'PWA instalable',
+      'Cobros por método de pago',
+      'Control de apto médico',
+      '28 días de prueba gratis',
+    ]}
+    features={[
+      { icon: '👥', title: 'Socios', desc: 'Alta, edición y baja de socios con foto, DNI, teléfono y email. Estado activo o inactivo visible de un vistazo.' },
+      { icon: '🎫', title: 'Membresías', desc: 'Asignás membresía a cada socio: mensual, trimestral o la que necesites. Con fecha de inicio, vencimiento y estado — activa, próxima a vencer, vencida o congelada.' },
+      { icon: '📲', title: 'Check-in por QR', desc: 'Escaneás el QR del socio y la pantalla muestra verde o rojo en grande para verlo desde lejos. Registra asistencia automáticamente si la membresía está activa. También modo manual por nombre.' },
+      { icon: '💰', title: 'Cobros', desc: 'Registrá pagos en efectivo, transferencia, débito o crédito. Historial por socio y nuevo cobro con datos prellenados desde el check-in.' },
+      { icon: '🏃', title: 'Actividades', desc: 'Gestioná clases y disciplinas con días, horarios, cupo máximo y profesor asignado. Cada socio puede estar en una o más actividades.' },
+      { icon: '📋', title: 'Asistencias', desc: 'Historial completo de entradas por socio con filtros por fecha y actividad. Sabés quién vino, cuándo y a qué.' },
+      { icon: '🩺', title: 'Apto médico', desc: 'Control de vencimiento del certificado médico por socio con alertas automáticas de los que están vencidos.' },
+      { icon: '📊', title: 'Dashboard', desc: 'Socios activos, vencidos y próximos a vencer. Ingresos del mes, asistencias de hoy y alertas anti-churn de socios que no vienen hace tiempo.' },
+      { icon: '📑', title: 'Caja y liquidaciones', desc: 'Cierre de caja diario con totales por método de pago. Liquidación de honorarios a profesores por actividad.' },
+    ]}
+    plans={[
+      {
+        name: 'Básico',
+        features: [
+          'Hasta 100 socios',
+          'Hasta 3 actividades',
+          'Check-in QR y manual',
+          'Cobros y caja',
+          'Dashboard',
+          '1 usuario',
+        ],
+      },
+      {
+        name: 'Profesional',
+        highlight: true,
+        badge: 'Más elegido',
+        features: [
+          'Hasta 300 socios',
+          'Actividades ilimitadas',
+          'Todo lo del plan Básico',
+          'Apto médico · Profesores',
+          'Liquidaciones · Alerta deserción',
+          '2 colaboradores',
+        ],
+      },
+      {
+        name: 'Premium',
+        features: [
+          'Socios ilimitados',
+          'Todo lo del plan Profesional',
+          'Reportes avanzados',
+          '5 colaboradores',
+          'Soporte prioritario',
+        ],
+      },
+    ]}
+  />
 </Layout>

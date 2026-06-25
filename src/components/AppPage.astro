@@ -9,6 +9,7 @@ interface Plan {
   name: string;
   highlight?: boolean;
   badge?: string;
+  price?: string;
   features: string[];
 }
 
@@ -52,9 +53,9 @@ const carouselId = `carousel-${name.replace(/\s/g, '-').toLowerCase()}`;
       <p class={`text-xl font-medium mb-4 ${accentText}`}>{tagline}</p>
       <p class="text-slate-400 text-lg leading-relaxed mb-8">{description}</p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/registro"
+        <a href={ctaUrl} target="_blank"
           class={`inline-flex items-center justify-center gap-2 ${accentColor} text-white font-semibold px-6 py-3.5 rounded-xl transition-opacity hover:opacity-90`}>
-          Empezar prueba gratis
+          Probar 28 días gratis
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
           </svg>
@@ -141,9 +142,13 @@ const carouselId = `carousel-${name.replace(/\s/g, '-').toLowerCase()}`;
             </div>
           )}
           <h3 class="font-bold text-white text-xl mb-1">{plan.name}</h3>
+          {plan.price
+            ? <p class={`text-lg font-bold mb-1 ${plan.highlight ? accentText : 'text-slate-300'}`}>{plan.price}</p>
+            : null
+          }
           {plan.highlight
             ? <p class={`text-sm font-semibold mb-6 ${accentText}`}>28 días gratis, sin tarjeta</p>
-            : <p class="text-sm text-slate-500 mb-6">Consultá precio</p>
+            : <p class="text-sm text-slate-500 mb-6">{plan.price ? 'Consultá disponibilidad' : 'Consultá precio'}</p>
           }
           <ul class="space-y-3">
             {plan.features.map(feat => (

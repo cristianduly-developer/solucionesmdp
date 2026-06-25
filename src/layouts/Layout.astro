@@ -11,7 +11,7 @@ const {
   ogImage = "/og-image.svg",
 } = Astro.props;
 
-const siteUrl = "https://soluciones-mdp.vercel.app";
+const siteUrl = "https://www.solucionesmdp.com.ar";
 const fullTitle = title === "Inicio" ? "Soluciones MDP — Apps para negocios argentinos" : `${title} | Soluciones MDP`;
 ---
 <!doctype html>
@@ -45,8 +45,8 @@ const fullTitle = title === "Inicio" ? "Soluciones MDP — Apps para negocios ar
   <body class="bg-[#0a0a0f] text-slate-100 font-['Inter',sans-serif] antialiased overflow-x-hidden">
     <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#0a0a0f]/80 backdrop-blur-md">
       <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="/" class="text-lg font-bold tracking-tight text-white">
-          Soluciones<span class="text-indigo-400">MDP</span>
+        <a href="/" class="flex items-center">
+          <img src="/logo.png" alt="Soluciones MDP" class="h-24 w-auto" />
         </a>
         <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
           <a href="/turnos" class="hover:text-emerald-400 transition-colors">Turnos</a>
@@ -90,7 +90,10 @@ const fullTitle = title === "Inicio" ? "Soluciones MDP — Apps para negocios ar
     </main>
     <footer class="border-t border-white/5 mt-24 py-12">
       <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-        <p>© 2025 Soluciones MDP. Mar del Plata, Argentina.</p>
+        <div class="flex items-center gap-3">
+          <img src="/logo.png" alt="Soluciones MDP" class="h-24 w-auto" />
+          <p>© 2025 Soluciones MDP. Mar del Plata, Argentina.</p>
+        </div>
         <a href="https://wa.me/542235767784" target="_blank" class="hover:text-white transition-colors">
           Contacto por WhatsApp
         </a>

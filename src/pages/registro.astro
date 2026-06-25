@@ -2,12 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 
 const apps = [
-  { value: 'turnos', label: '💇 App Turnos — Estética y belleza' },
-  { value: 'presup', label: '🔧 App Presupuesto — Presupuestos y obras' },
+  { value: 'turnos', label: '📅 App Turnos — Agenda y reservas' },
+  { value: 'presup', label: '🧾 App Presupuesto — Presupuestos y obras' },
   { value: 'reparto', label: '🚚 App Reparto — Distribución y reparto' },
   { value: 'docente', label: '📚 App Docente — Gestión educativa' },
   { value: 'eventos', label: '🏟️ App Eventos — Quinchos y salones' },
-  { value: 'gastronomia', label: '🍽️ App Gastronomía — Próximamente (anotarme)' },
+  { value: 'gastronomia', label: '🍽️ App Gastronomía — Restaurantes y food trucks' },
+  { value: 'membresias', label: '🏋️ App Membresías — Gimnasios y clubes' },
+  { value: 'taller', label: '🔧 App Taller — Próximamente (anotarme)' },
 ];
 ---
 
@@ -90,8 +92,13 @@ const apps = [
     reparto: 'App Reparto',
     docente: 'App Docente',
     eventos: 'App Eventos',
-    gastronomia: 'App Gastronomía (lista de espera)',
+    gastronomia: 'App Gastronomía',
+    membresias: 'App Membresías',
+    taller: 'App Taller (lista de espera)',
   };
+
+  // Apps en lista de espera — solo mandan WhatsApp, sin verificar SaaS
+  const listaEspera = ['taller'];
 
   // Mapeo al app_id que usa el SaaS central
   const appIds: Record<string, string> = {
@@ -101,15 +108,18 @@ const apps = [
     docente: 'docentes',
     eventos: 'quincho',
     gastronomia: 'gastronomia',
+    membresias: 'membresias',
   };
 
   // Links directos a cada app
   const appUrls: Record<string, string> = {
-    turnos: 'https://app-turnos.vercel.app',
+    turnos: 'https://app-turnos-ochre.vercel.app',
     presup: 'https://app-presup.vercel.app',
-    reparto: 'https://app-reparto.vercel.app',
-    docente: 'https://app-docente.vercel.app',
+    reparto: 'https://app-reparto-nu.vercel.app',
+    docente: 'https://aye-app-one.vercel.app',
     eventos: 'https://quincho-bere.vercel.app',
+    gastronomia: 'https://app-gastronomia-lemon.vercel.app',
+    membresias: 'https://app-membresia.vercel.app',
   };
 
   function showMsg(text: string, type: 'error' | 'warning' | 'success') {
@@ -134,6 +144,19 @@ const apps = [
     msgBox.classList.add('hidden');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Verificando...';
+
+    // Apps en lista de espera: salteamos verificación SaaS
+    if (listaEspera.includes(app)) {
+      const msg = `Hola! Me quiero anotar en la lista de espera 🙌
+
+*Nombre:* ${nombre} ${apellido}
+*Email Gmail:* ${email}
+*WhatsApp:* ${whatsapp}
+*App:* ${appLabels[app] || app}`;
+      window.open(`https://wa.me/542235767784?text=${encodeURIComponent(msg)}`, '_blank');
+      window.location.href = '/gracias';
+      return;
+    }
 
     try {
       const res = await fetch('https://ngymvfvlknaltsvsrvjm.supabase.co/rest/v1/rpc/verificar_acceso_email', {
