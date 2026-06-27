@@ -3,6 +3,9 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "framework": "astro",
+  "redirects": [
+    { "source": "/((?!construccion).*)", "destination": "/construccion", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/(.*)",
