@@ -4,7 +4,7 @@
   "installCommand": "npm install",
   "framework": "astro",
   "redirects": [
-    { "source": "/((?!construccion).*)", "destination": "/construccion", "permanent": false }
+    { "source": "/((?!construccion|_astro|logo\\.png|favicon\\.svg|screenshots|og-image).*)", "destination": "/construccion", "permanent": false }
   ],
   "headers": [
     {
