@@ -2,14 +2,5 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
-  "framework": "astro",
-  "redirects": [
-    { "source": "/((?!construccion|_astro|logo\\.png|favicon\\.svg|screenshots|og-image).*)", "destination": "/construccion", "permanent": false }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }]
-    }
-  ]
+  "framework": "astro"
 }
