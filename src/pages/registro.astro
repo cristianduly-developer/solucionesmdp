@@ -1,28 +1,28 @@
-ï»¿---
+---
 import Layout from '../layouts/Layout.astro';
 
 const apps = [
-  { value: 'turnos', label: 'ğŸ“… App Turnos â€” Agenda y reservas' },
-  { value: 'presup', label: 'ğŸ§¾ App Presupuesto â€” Presupuestos y obras' },
-  { value: 'reparto', label: 'ğŸšš App Reparto â€” DistribuciÃ³n y reparto' },
-  { value: 'docente', label: 'ğŸ“š App Docente â€” GestiÃ³n educativa' },
-  { value: 'eventos', label: 'ğŸŸï¸ App Eventos â€” Quinchos y salones' },
-  { value: 'gastronomia', label: 'ğŸ½ï¸ App GastronomÃ­a â€” Restaurantes y food trucks' },
-  { value: 'membresias', label: 'ğŸ‹ï¸ App MembresÃ­as â€” Gimnasios y clubes' },
-  { value: 'taller', label: 'ğŸ”§ App Taller â€” PrÃ³ximamente (anotarme)' },
+  { value: 'turnos', label: '?? App Turnos — Agenda y reservas' },
+  { value: 'presup', label: '?? App Presupuesto — Presupuestos y obras' },
+  { value: 'reparto', label: '?? App Reparto — Distribución y reparto' },
+  { value: 'docente', label: '?? App Docente — Gestión educativa' },
+  { value: 'eventos', label: '??? App Eventos — Quinchos y salones' },
+  { value: 'gastronomia', label: '??? App Gastronomía — Restaurantes y food trucks' },
+  { value: 'membresias', label: '??? App Membresías — Gimnasios y clubes' },
+  { value: 'taller', label: '?? App Taller — Próximamente (anotarme)' },
 ];
 ---
 
-<Layout title="Empezar gratis" description="Registrate para acceder a tu prueba gratuita de 28 dÃ­as.">
+<Layout title="Empezar gratis" description="Registrate para acceder a tu prueba gratuita de 28 días.">
   <section class="max-w-lg mx-auto px-4 py-20">
 
     <div class="text-center mb-10">
       <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm px-4 py-1.5 rounded-full mb-6">
         <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-        28 dÃ­as gratis Â· Sin tarjeta
+        28 días gratis · Sin tarjeta
       </div>
       <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Empezar prueba gratis</h1>
-      <p class="text-slate-400">CompletÃ¡ el formulario y en menos de 24 horas te activamos el acceso.</p>
+      <p class="text-slate-400">Completá el formulario y en menos de 24 horas te activamos el acceso.</p>
     </div>
 
     <form id="registro-form" class="bg-[#13131a] border border-white/5 rounded-2xl p-8 flex flex-col gap-5">
@@ -35,7 +35,7 @@ const apps = [
         </div>
         <div class="flex flex-col gap-1.5">
           <label class="text-sm font-medium text-slate-300" for="apellido">Apellido</label>
-          <input id="apellido" name="apellido" type="text" required placeholder="GarcÃ­a"
+          <input id="apellido" name="apellido" type="text" required placeholder="García"
             class="bg-[#0a0a0f] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500 transition-colors" />
         </div>
       </div>
@@ -54,10 +54,10 @@ const apps = [
       </div>
 
       <div class="flex flex-col gap-1.5">
-        <label class="text-sm font-medium text-slate-300" for="app">Â¿QuÃ© app querÃ©s probar?</label>
+        <label class="text-sm font-medium text-slate-300" for="app">¿Qué app querés probar?</label>
         <select id="app" name="app" required
           class="bg-[#0a0a0f] border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors appearance-none">
-          <option value="" disabled selected>SeleccionÃ¡ una app...</option>
+          <option value="" disabled selected>Seleccioná una app...</option>
           {apps.map(a => (
             <option value={a.value}>{a.label}</option>
           ))}
@@ -66,7 +66,7 @@ const apps = [
 
       <button type="submit" id="submit-btn"
         class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3.5 rounded-xl transition-colors text-sm mt-2">
-        Solicitar acceso gratuito â†’
+        Solicitar acceso gratuito ?
       </button>
 
       <!-- Mensaje de estado (oculto por defecto) -->
@@ -92,12 +92,12 @@ const apps = [
     reparto: 'App Reparto',
     docente: 'App Docente',
     eventos: 'App Eventos',
-    gastronomia: 'App GastronomÃ­a',
-    membresias: 'App MembresÃ­as',
+    gastronomia: 'App Gastronomía',
+    membresias: 'App Membresías',
     taller: 'App Taller (lista de espera)',
   };
 
-  // Apps en lista de espera â€” solo mandan WhatsApp, sin verificar SaaS
+  // Apps en lista de espera — solo mandan WhatsApp, sin verificar SaaS
   const listaEspera = ['taller'];
 
   // Mapeo al app_id que usa el SaaS central
@@ -145,15 +145,15 @@ const apps = [
     submitBtn.disabled = true;
     submitBtn.textContent = 'Verificando...';
 
-    // Apps en lista de espera: salteamos verificaciÃ³n SaaS
+    // Apps en lista de espera: salteamos verificación SaaS
     if (listaEspera.includes(app)) {
-      const msg = `Hola! Me quiero anotar en la lista de espera ğŸ™Œ
+      const msg = `Hola! Me quiero anotar en la lista de espera ??
 
 *Nombre:* ${nombre} ${apellido}
 *Email Gmail:* ${email}
 *WhatsApp:* ${whatsapp}
 *App:* ${appLabels[app] || app}`;
-      window.open(`https://wa.me/542235767784?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/542236965481?text=${encodeURIComponent(msg)}`, '_blank');
       window.location.href = '/gracias';
       return;
     }
@@ -176,9 +176,9 @@ const apps = [
           const linkHtml = appUrl
             ? `<br><a href="${appUrl}" target="_blank" class="underline font-semibold">Ir a ${appLabels[app]}</a>`
             : '';
-          showMsg(`Este Gmail ya tiene una cuenta en ${appLabels[app] || app}. EntrÃ¡ directamente con Google.${linkHtml}`, 'warning');
+          showMsg(`Este Gmail ya tiene una cuenta en ${appLabels[app] || app}. Entrá directamente con Google.${linkHtml}`, 'warning');
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Solicitar acceso gratuito â†’';
+          submitBtn.textContent = 'Solicitar acceso gratuito ?';
           return;
         }
       }
@@ -186,17 +186,17 @@ const apps = [
       // Si el fetch falla, continuamos normalmente para no bloquear al usuario
     }
 
-    // No tiene cuenta â€” abrir WhatsApp
-    const msg = `Hola! Quiero empezar la prueba gratis ğŸ™Œ
+    // No tiene cuenta — abrir WhatsApp
+    const msg = `Hola! Quiero empezar la prueba gratis ??
 
 *Nombre:* ${nombre} ${apellido}
 *Email Gmail:* ${email}
 *WhatsApp:* ${whatsapp}
 *App:* ${appLabels[app] || app}`;
 
-    window.open(`https://wa.me/542235767784?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/542236965481?text=${encodeURIComponent(msg)}`, '_blank');
 
-    // Redirigir a pÃ¡gina de confirmaciÃ³n
+    // Redirigir a página de confirmación
     window.location.href = '/gracias';
   });
 </script>
