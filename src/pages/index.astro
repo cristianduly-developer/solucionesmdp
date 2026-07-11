@@ -10,7 +10,7 @@ const apps = [
   { name: 'Eventos', subtitle: 'Reservas de espacios sin caos', features: ['Temporadas de precios', 'WhatsApp integrado', 'Múltiples espacios', 'Señas y pagos parciales'], color: 'oklch(72% 0.18 30)', href: '/eventos', status: 'Activa' },
   { name: 'Gastro', subtitle: 'Tu local, todo en tiempo real', features: ['Mesas en tiempo real', 'Monitor de cocina', 'Menú QR con pedidos', 'Delivery integrado'], color: 'oklch(65% 0.18 15)', href: '/gastronomia', status: 'Activa' },
   { name: 'Membresías', subtitle: 'Socios, cobros y asistencia sin perseguir a nadie', features: ['Check-in QR', 'Alertas de vencimiento', 'Cobros y caja', 'Socios y membresías'], color: 'oklch(65% 0.18 280)', href: '/membresias', status: 'Activa' },
-  { name: 'Web', subtitle: 'Tu presencia online, sin complicaciones', features: ['Landing profesional', 'Dominio .com.ar incluido', 'Optimizado para Google', 'Entrega en 5–7 días'], color: 'oklch(72% 0.20 145)', href: '/web', status: 'Nuevo' },
+  { name: 'Web', subtitle: 'Tu presencia online, sin complicaciones', features: ['Landing profesional', 'Dominio .com.ar incluido', 'Optimizado para Google', 'Entrega en 5–7 días'], color: 'oklch(72% 0.20 145)', href: '/web', status: 'Nuevo', cta: 'Ver más →' },
 ];
 
 const comparisons = [
@@ -158,7 +158,7 @@ const faqs = [
             ))}
           </div>
           <div style="margin-top:20px; font-size:12px; color:oklch(68% 0.22 265); font-weight:500; letter-spacing:0.01em;">
-            Probar 28 días gratis →
+            {app.cta ?? 'Probar 28 días gratis →'}
           </div>
         </a>
       ))}
