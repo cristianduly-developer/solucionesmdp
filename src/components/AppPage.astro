@@ -2,7 +2,6 @@
 interface Feature {
   title: string;
   desc: string;
-  icon: string;
 }
 
 interface Plan {
@@ -17,158 +16,166 @@ interface Props {
   name: string;
   tagline: string;
   description: string;
-  icon: string;
+  audience: string;
   screenshots: string[];
   accentColor: string;
-  accentBg: string;
-  accentBorder: string;
-  accentText: string;
   ctaUrl: string;
   features: Feature[];
   plans: Plan[];
-  audience: string;
   differentiators: string[];
 }
 
 const {
-  name, tagline, description, icon, screenshots,
-  accentColor, accentBg, accentBorder, accentText,
-  ctaUrl, features, plans, audience, differentiators
+  name, tagline, description, audience,
+  screenshots, accentColor, ctaUrl,
+  features, plans, differentiators,
 } = Astro.props;
 
 const carouselId = `carousel-${name.replace(/\s/g, '-').toLowerCase()}`;
+const hasScreenshots = screenshots.length > 0;
 ---
 
-<!-- Hero -->
-<section class="max-w-6xl mx-auto px-4 pt-20 pb-16">
-  <div class="flex flex-col md:flex-row gap-12 items-center">
-    <div class="flex-1">
-      <div class={`inline-flex items-center gap-2 ${accentBg} border ${accentBorder} ${accentText} text-sm px-4 py-1.5 rounded-full mb-6`}>
-        <span class="text-lg">{icon}</span>
+<!-- HERO -->
+<section style="min-height:100vh; display:flex; align-items:center; padding:100px 48px 80px; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background:radial-gradient(ellipse 55% 55% at 75% 40%, oklch(20% 0.12 265 / 0.22) 0%, transparent 65%); pointer-events:none;"></div>
+  <div style="position:absolute; inset:0; background-image:radial-gradient(oklch(28% 0.04 270 / 0.3) 1px, transparent 1px); background-size:28px 28px; pointer-events:none;"></div>
+
+  <div style="max-width:1100px; margin:0 auto; width:100%;" class="hero-two-col">
+    <!-- Text -->
+    <div>
+      <div style={`display:inline-flex; align-items:center; padding:6px 14px; border:1px solid ${accentColor}35; border-radius:100px; margin-bottom:18px; font-size:13px; color:${accentColor}; background:${accentColor}18; font-weight:500; letter-spacing:0.02em;`}>
         {audience}
       </div>
-      <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-4">
+      <h1 class="font-syne" style="font-size:clamp(40px,5.5vw,72px); font-weight:800; line-height:1.04; letter-spacing:-0.032em; margin-bottom:12px; text-wrap:balance;">
         {name}
       </h1>
-      <p class={`text-xl font-medium mb-4 ${accentText}`}>{tagline}</p>
-      <p class="text-slate-400 text-lg leading-relaxed mb-8">{description}</p>
-      <div class="flex flex-col sm:flex-row gap-4">
+      <p style={`font-size:18px; font-weight:500; color:${accentColor}; margin-bottom:16px; line-height:1.5;`}>{tagline}</p>
+      <p style="color:oklch(52% 0.04 270); font-size:16px; line-height:1.75; font-weight:300; margin-bottom:36px; max-width:480px;">{description}</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px;">
         <a href={ctaUrl} target="_blank"
-          class={`inline-flex items-center justify-center gap-2 ${accentColor} text-white font-semibold px-6 py-3.5 rounded-xl transition-opacity hover:opacity-90`}>
-          Probar 28 días gratis
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
+          style={`display:inline-block; background:${accentColor}; color:#fff; padding:14px 28px; border-radius:10px; font-weight:600; font-size:15px; letter-spacing:0.01em; transition:opacity 0.2s;`}
+          onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+          Probar 28 días gratis →
         </a>
         <a href="https://wa.me/542235767784" target="_blank"
-          class="inline-flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white font-semibold px-6 py-3.5 rounded-xl transition-colors">
-          Consultar por WhatsApp
+          style="background:oklch(13% 0.04 270); border:1px solid oklch(22% 0.04 270); color:oklch(78% 0.02 270); padding:14px 24px; border-radius:10px; font-weight:500; font-size:15px; transition:border-color 0.2s;"
+          onmouseover="this.style.borderColor='oklch(38% 0.04 270)'" onmouseout="this.style.borderColor='oklch(22% 0.04 270)'">
+          Hablar por WhatsApp
         </a>
       </div>
-      <p class="text-sm text-slate-500 mt-4">Sin tarjeta de crédito · Hasta 28 días gratis</p>
+      <p style="font-size:12px; color:oklch(36% 0.04 270); letter-spacing:0.02em;">Sin tarjeta de crédito · Hasta 28 días gratis</p>
     </div>
 
-    <!-- Carrusel sliding -->
-    <div class="flex-1 flex flex-col items-center gap-4">
-      <div class="relative w-56 md:w-64 overflow-hidden rounded-3xl shadow-2xl border border-white/10" id={carouselId}>
-        <div class="flex transition-transform duration-700 ease-in-out" data-track>
-          {screenshots.map((src, i) => (
-            <img
-              src={src}
-              alt={`${name} pantalla ${i + 1}`}
-              class="w-full flex-shrink-0 object-cover"
-              loading={i === 0 ? 'eager' : 'lazy'}
-            />
-          ))}
+    <!-- Phone mockup -->
+    <div class="hero-phone" style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+      {hasScreenshots ? (
+        <>
+          <div id={carouselId} style="width:260px; height:520px; border-radius:40px; border:2px solid oklch(20% 0.04 270); background:#060610; overflow:hidden; box-shadow:0 40px 80px oklch(0% 0 0 / 0.55), 0 0 0 1px oklch(100% 0 0 / 0.03); position:relative; flex-shrink:0;">
+            <div style="position:absolute; top:14px; left:50%; transform:translateX(-50%); width:68px; height:4px; border-radius:2px; background:oklch(20% 0.04 270); z-index:10;"></div>
+            <div style="overflow:hidden; height:100%;">
+              <div data-track style="display:flex; transition:transform 0.65s cubic-bezier(0.22,1,0.36,1);">
+                {screenshots.map((src, i) => (
+                  <img src={src} alt={`${name} pantalla ${i+1}`} style="width:260px; height:520px; object-fit:cover; flex-shrink:0; display:block;" loading={i === 0 ? 'eager' : 'lazy'} />
+                ))}
+              </div>
+            </div>
+          </div>
+          <div data-dots={carouselId} style="display:flex; gap:6px; align-items:center;">
+            {screenshots.map((_, i) => (
+              <button
+                data-dot={i}
+                style={`width:${i===0?'20px':'8px'}; height:8px; border-radius:4px; background:${i===0?accentColor:'oklch(22% 0.04 270)'}; transition:width 0.3s ease, background 0.3s ease; cursor:pointer; border:none; padding:0; flex-shrink:0;`}
+                aria-label={`Pantalla ${i+1}`}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div style="width:260px; height:520px; border-radius:40px; border:2px dashed oklch(20% 0.04 270); background:oklch(10% 0.02 270); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;">
+          <div style="font-size:48px; opacity:0.2;">📱</div>
+          <p style="font-size:13px; color:oklch(34% 0.04 270); text-align:center; line-height:1.6; letter-spacing:0.02em;">Imágenes<br />próximamente</p>
         </div>
-      </div>
-      <!-- Dots -->
-      <div class="flex gap-2" data-dots={carouselId}>
-        {screenshots.map((_, i) => (
-          <button
-            class={`transition-all duration-300 rounded-full ${i === 0 ? `w-5 h-2 ${accentColor}` : 'w-2 h-2 bg-white/20'}`}
-            data-dot={i}
-            aria-label={`Pantalla ${i + 1}`}
-          />
-        ))}
-      </div>
+      )}
     </div>
   </div>
 </section>
 
-<!-- Diferenciadores -->
-<section class={`border-y ${accentBorder} ${accentBg} py-10`}>
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      {differentiators.map(d => (
-        <div class="flex items-start gap-2">
-          <svg class={`w-5 h-5 mt-0.5 flex-shrink-0 ${accentText}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-          <span class="text-sm text-slate-300">{d}</span>
+<!-- DIFFERENTIATORS STRIP -->
+<section style="border-top:1px solid oklch(15% 0.03 270); border-bottom:1px solid oklch(15% 0.03 270); padding:28px 48px; background:#0b0b12;">
+  <div style="max-width:1100px; margin:0 auto;" class="diff-grid">
+    {differentiators.map(d => (
+      <div style="display:flex; align-items:flex-start; gap:8px;">
+        <span style={`color:${accentColor}; font-weight:700; font-size:13px; flex-shrink:0; margin-top:1px;`}>✓</span>
+        <span style="font-size:13px; color:oklch(62% 0.03 270); line-height:1.45;">{d}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section style="padding:96px 48px; background:#09090f;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:60px;">
+      <p class="section-label" style={`color:${accentColor};`}>Funcionalidades</p>
+      <h2 class="font-syne" style="font-size:clamp(28px,4vw,48px); font-weight:700; letter-spacing:-0.025em;">Todo lo que necesitás</h2>
+    </div>
+    <div class="feature-grid">
+      {features.map((f, i) => (
+        <div class="feature-cell">
+          <div class="font-syne" style={`font-size:12px; font-weight:700; color:${accentColor}; letter-spacing:0.06em; margin-bottom:12px;`}>
+            {String(i+1).padStart(2,'0')}
+          </div>
+          <h3 class="font-syne" style="font-size:17px; font-weight:700; margin-bottom:8px; letter-spacing:-0.01em; color:oklch(92% 0.01 270);">{f.title}</h3>
+          <p style="color:oklch(50% 0.04 270); font-size:13px; line-height:1.7; font-weight:300;">{f.desc}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
 
-<!-- Features -->
-<section class="max-w-6xl mx-auto px-4 py-24">
-  <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-16">Todo lo que necesitás</h2>
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {features.map(f => (
-      <div class="bg-[#13131a] border border-white/5 rounded-2xl p-6">
-        <div class="text-3xl mb-4">{f.icon}</div>
-        <h3 class="font-semibold text-white mb-2">{f.title}</h3>
-        <p class="text-sm text-slate-400 leading-relaxed">{f.desc}</p>
-      </div>
-    ))}
-  </div>
-</section>
-
-<!-- Planes -->
-<section class="border-t border-white/5 bg-white/[0.02] py-24">
-  <div class="max-w-5xl mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Planes</h2>
-      <p class="text-slate-400 text-lg">Comenzá con el plan Profesional gratis por 28 días.</p>
+<!-- PLANS -->
+<section style="padding:96px 48px; background:#0c0c14;">
+  <div style="max-width:1000px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:60px;">
+      <p class="section-label" style={`color:${accentColor};`}>Precios</p>
+      <h2 class="font-syne" style="font-size:clamp(28px,4vw,48px); font-weight:700; letter-spacing:-0.025em; margin-bottom:12px;">Planes</h2>
+      <p style="color:oklch(50% 0.04 270); font-weight:300;">Comenzá con el plan Profesional gratis por 28 días.</p>
     </div>
-    <div class="grid md:grid-cols-3 gap-6">
+    <div class="plans-grid">
       {plans.map(plan => (
-        <div class={`relative bg-[#13131a] rounded-2xl p-6 border transition-all ${plan.highlight ? `${accentBorder}` : 'border-white/5'}`}>
+        <div style={`position:relative; background:#111119; border-radius:14px; padding:28px 22px; border:${plan.highlight ? `2px solid ${accentColor}55` : '1px solid oklch(18% 0.04 270)'};`}>
           {plan.badge && (
-            <div class={`absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-semibold px-3 py-1 rounded-full ${accentColor} text-white whitespace-nowrap`}>
+            <div style={`position:absolute; top:-12px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:700; padding:3px 12px; border-radius:100px; background:${accentColor}; color:#fff; white-space:nowrap; letter-spacing:0.04em;`}>
               {plan.badge}
             </div>
           )}
-          <h3 class="font-bold text-white text-xl mb-1">{plan.name}</h3>
-          {plan.price
-            ? <p class={`text-lg font-bold mb-1 ${plan.highlight ? accentText : 'text-slate-300'}`}>{plan.price}</p>
-            : null
-          }
+          <h3 class="font-syne" style="font-size:21px; font-weight:700; margin-bottom:4px;">{plan.name}</h3>
+          {plan.price && (
+            <p style={`font-size:18px; font-weight:700; color:${plan.highlight ? accentColor : 'oklch(78% 0.02 270)'}; margin-bottom:2px;`}>{plan.price}</p>
+          )}
           {plan.highlight
-            ? <p class={`text-sm font-semibold mb-6 ${accentText}`}>28 días gratis, sin tarjeta</p>
-            : <p class="text-sm text-slate-500 mb-6">{plan.price ? 'Consultá disponibilidad' : 'Consultá precio'}</p>
+            ? <p style={`font-size:13px; font-weight:600; color:${accentColor}; margin-bottom:16px;`}>28 días gratis, sin tarjeta</p>
+            : <p style="font-size:13px; color:oklch(40% 0.04 270); margin-bottom:16px;">Consultá precio</p>
           }
-          <ul class="space-y-3">
+          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
             {plan.features.map(feat => (
-              <li class="flex items-start gap-2 text-sm text-slate-400">
-                <svg class={`w-4 h-4 mt-0.5 flex-shrink-0 ${accentText}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
+              <div style="display:flex; align-items:flex-start; gap:8px; font-size:13px; color:oklch(58% 0.03 270); line-height:1.45;">
+                <span style={`color:${accentColor}; font-weight:700; font-size:12px; flex-shrink:0; margin-top:2px;`}>✓</span>
                 {feat}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
           {plan.highlight
             ? (
               <a href={ctaUrl} target="_blank"
-                class={`mt-8 block text-center font-semibold py-3 rounded-xl transition-all text-sm ${accentColor} text-white hover:opacity-90`}>
+                style={`display:block; text-align:center; font-weight:600; padding:13px; border-radius:9px; background:${accentColor}; color:#fff; font-size:14px; transition:opacity 0.2s;`}
+                onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
                 Empezar gratis ahora →
               </a>
             ) : (
               <a href="https://wa.me/542235767784" target="_blank"
-                class="mt-8 block text-center font-semibold py-3 rounded-xl transition-all text-sm border border-white/10 text-slate-300 hover:border-white/20 hover:text-white">
+                style="display:block; text-align:center; font-weight:500; padding:12px; border-radius:9px; border:1px solid oklch(24% 0.04 270); color:oklch(58% 0.03 270); font-size:14px; transition:border-color 0.2s;"
+                onmouseover="this.style.borderColor='oklch(40% 0.04 270)'" onmouseout="this.style.borderColor='oklch(24% 0.04 270)'">
                 Consultar por WhatsApp
               </a>
             )
@@ -176,52 +183,48 @@ const carouselId = `carousel-${name.replace(/\s/g, '-').toLowerCase()}`;
         </div>
       ))}
     </div>
-    <p class="text-center text-slate-500 text-sm mt-8">
+    <p style="text-align:center; color:oklch(36% 0.04 270); font-size:13px; margin-top:28px;">
       ¿No sabés qué plan necesitás?
-      <a href="https://wa.me/542235767784" target="_blank" class="text-slate-400 hover:text-white underline ml-1">Escribinos</a>
+      <a href="https://wa.me/542235767784" target="_blank" style="color:oklch(50% 0.04 270); transition:color 0.2s;" onmouseover="this.style.color='oklch(80% 0.02 270)'" onmouseout="this.style.color='oklch(50% 0.04 270)'"> Escribinos</a>
     </p>
   </div>
 </section>
 
-<!-- CTA final -->
-<section class="max-w-6xl mx-auto px-4 py-24 text-center">
-  <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Empezá hoy, sin compromisos</h2>
-  <p class="text-slate-400 text-lg mb-8 max-w-xl mx-auto">
-    28 días gratis con el plan Profesional completo. Sin tarjeta, sin instalación.
-  </p>
-  <a href="/registro"
-    class={`inline-flex items-center gap-2 ${accentColor} text-white font-semibold px-8 py-4 rounded-xl transition-opacity hover:opacity-90 text-lg`}>
-    Probar gratis ahora
-    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-    </svg>
-  </a>
+<!-- CTA FINAL -->
+<section style="padding:96px 48px; background:#09090f; text-align:center; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 50% 50%, oklch(18% 0.10 265 / 0.32) 0%, transparent 70%); pointer-events:none;"></div>
+  <div style="position:relative; max-width:580px; margin:0 auto;">
+    <h2 class="font-syne" style="font-size:clamp(28px,4vw,48px); font-weight:800; letter-spacing:-0.03em; margin-bottom:14px; line-height:1.1;">Empezá hoy, sin compromisos</h2>
+    <p style="color:oklch(50% 0.04 270); font-size:16px; font-weight:300; margin-bottom:36px; line-height:1.75;">
+      28 días gratis con el plan Profesional completo.<br />Sin tarjeta, sin instalación.
+    </p>
+    <a href={ctaUrl} target="_blank"
+      style={`display:inline-block; background:${accentColor}; color:#fff; padding:15px 32px; border-radius:10px; font-weight:600; font-size:15px; transition:opacity 0.2s;`}
+      onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+      Probar gratis ahora →
+    </a>
+  </div>
 </section>
 
-<script define:vars={{ carouselId }}>
+<script define:vars={{ carouselId, accentColor }}>
   const wrap = document.getElementById(carouselId);
   if (wrap) {
     const track = wrap.querySelector('[data-track]');
     const dotsWrap = document.querySelector(`[data-dots="${carouselId}"]`);
-    const dots = dotsWrap ? dotsWrap.querySelectorAll('[data-dot]') : [];
+    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('[data-dot]')) : [];
     const total = track ? track.children.length : 0;
     let current = 0;
 
     function goTo(n) {
       current = (n + total) % total;
-      track.style.transform = `translateX(-${current * 100}%)`;
+      track.style.transform = `translateX(-${current * 260}px)`;
       dots.forEach((d, i) => {
-        if (i === current) {
-          d.classList.add('w-5', 'h-2');
-          d.classList.remove('w-2', 'h-2', 'bg-white/20');
-        } else {
-          d.classList.remove('w-5');
-          d.classList.add('w-2', 'bg-white/20');
-        }
+        d.style.width = i === current ? '20px' : '8px';
+        d.style.background = i === current ? accentColor : 'oklch(22% 0.04 270)';
       });
     }
 
     dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-    setInterval(() => goTo(current + 1), 2500);
+    if (total > 1) setInterval(() => goTo(current + 1), 2800);
   }
 </script>
