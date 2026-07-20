@@ -1,32 +1,89 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 import AppPage from '../components/AppPage.astro';
 ---
-<Layout title="App Membresías" description="Gestión de socios, membresías, check-in QR y cobros para gimnasios, clubes y espacios deportivos. Desde el celular o la PC." navType="app">
+<Layout
+  title="App para Gimnasios, Clubes y Gestión de Socios"
+  description="App para gestionar socios, cuotas y membresías en gimnasios, clubes deportivos y asociaciones en Argentina. Control de pagos, asistencia, check-in QR y vencimientos. Probá gratis."
+  keywords="app gimnasio, sistema gestión socios, app club deportivo, software membresías, control cuotas gimnasio argentina, app socios club"
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "App Membresías - Soluciones MDP",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "ARS", description: "28 días gratis" },
+    description: "App para gimnasios y clubes. Gestión de socios, cuotas, check-in QR y control de vencimientos."
+  }}
+>
   <AppPage
     name="App Membresías"
     tagline="Socios, cobros y asistencia sin perseguir a nadie"
     description="Gestioná socios, membresías y cobros desde el celular o la PC. Check-in por QR, alertas de vencimiento automáticas y control total del gimnasio — sin planillas ni papeles."
+    icon="🏋️"
+    screenshots={['/screenshots/membresias/dashboard.jpg', '/screenshots/membresias/socios.jpg', '/screenshots/membresias/membresias.jpg', '/screenshots/membresias/actividades.jpg', '/screenshots/membresias/cobros.jpg']}
     audience="Gimnasios · Crossfit · Artes marciales · Natatorios · Academias · Clubes deportivos"
-    accentColor="oklch(65% 0.18 280)"
+    accentColor="bg-teal-600"
+    accentBg="bg-teal-500/10"
+    accentBorder="border-teal-500/30"
+    accentText="text-teal-400"
     ctaUrl="https://membresias.solucionesmdp.com.ar"
-    screenshots={['/screenshots/membresias/dashboard.jpg','/screenshots/membresias/socios.jpg','/screenshots/membresias/membresias.jpg','/screenshots/membresias/actividades.jpg','/screenshots/membresias/cobros.jpg']}
-    differentiators={['Check-in por QR en segundos','Alertas de vencimiento automáticas','Roles: owner, recepcionista, profesor','Funciona en celu y PC','PWA instalable','Cobros por método de pago','Control de apto médico','28 días de prueba gratis']}
+    differentiators={[
+      'Check-in por QR en segundos',
+      'Alertas de vencimiento automáticas',
+      'Roles: owner, recepcionista, profesor',
+      'Funciona en celu y PC',
+      'PWA instalable',
+      'Cobros por método de pago',
+      'Control de apto médico',
+      '28 días de prueba gratis',
+    ]}
     features={[
-      { title: 'Socios', desc: 'Alta, edición y baja de socios con foto, DNI, teléfono y email. Estado activo o inactivo visible de un vistazo.' },
-      { title: 'Membresías', desc: 'Asignás membresía a cada socio: mensual, trimestral o la que necesites. Con fecha de inicio, vencimiento y estado.' },
-      { title: 'Check-in por QR', desc: 'Escaneás el QR del socio y la pantalla muestra verde o rojo en grande para verlo desde lejos. Registra asistencia automáticamente.' },
-      { title: 'Cobros', desc: 'Registrá pagos en efectivo, transferencia, débito o crédito. Historial por socio y nuevo cobro con datos prellenados.' },
-      { title: 'Actividades', desc: 'Gestioná clases y disciplinas con días, horarios, cupo máximo y profesor asignado. Cada socio puede estar en varias actividades.' },
-      { title: 'Asistencias', desc: 'Historial completo de entradas por socio con filtros por fecha y actividad. Sabés quién vino, cuándo y a qué.' },
-      { title: 'Apto médico', desc: 'Control de vencimiento del certificado médico por socio con alertas automáticas de los que están vencidos.' },
-      { title: 'Dashboard', desc: 'Socios activos, vencidos y próximos a vencer. Ingresos del mes, asistencias de hoy y alertas anti-churn.' },
-      { title: 'Caja y liquidaciones', desc: 'Cierre de caja diario con totales por método de pago. Liquidación de honorarios a profesores por actividad.' },
+      { icon: '👥', title: 'Socios', desc: 'Alta, edición y baja de socios con foto, DNI, teléfono y email. Estado activo o inactivo visible de un vistazo.' },
+      { icon: '🎫', title: 'Membresías', desc: 'Asignás membresía a cada socio: mensual, trimestral o la que necesites. Con fecha de inicio, vencimiento y estado — activa, próxima a vencer, vencida o congelada.' },
+      { icon: '📲', title: 'Check-in por QR', desc: 'Escaneás el QR del socio y la pantalla muestra verde o rojo en grande para verlo desde lejos. Registra asistencia automáticamente si la membresía está activa. También modo manual por nombre.' },
+      { icon: '💰', title: 'Cobros', desc: 'Registrá pagos en efectivo, transferencia, débito o crédito. Historial por socio y nuevo cobro con datos prellenados desde el check-in.' },
+      { icon: '🏃', title: 'Actividades', desc: 'Gestioná clases y disciplinas con días, horarios, cupo máximo y profesor asignado. Cada socio puede estar en una o más actividades.' },
+      { icon: '📋', title: 'Asistencias', desc: 'Historial completo de entradas por socio con filtros por fecha y actividad. Sabés quién vino, cuándo y a qué.' },
+      { icon: '🩺', title: 'Apto médico', desc: 'Control de vencimiento del certificado médico por socio con alertas automáticas de los que están vencidos.' },
+      { icon: '📊', title: 'Dashboard', desc: 'Socios activos, vencidos y próximos a vencer. Ingresos del mes, asistencias de hoy y alertas anti-churn de socios que no vienen hace tiempo.' },
+      { icon: '📑', title: 'Caja y liquidaciones', desc: 'Cierre de caja diario con totales por método de pago. Liquidación de honorarios a profesores por actividad.' },
     ]}
     plans={[
-      { name: 'Básico', features: ['Hasta 100 socios','Hasta 3 actividades','Check-in QR y manual','Cobros y caja','Dashboard','1 usuario'] },
-      { name: 'Profesional', highlight: true, badge: 'Más elegido', features: ['Hasta 300 socios','Actividades ilimitadas','Todo lo del plan Básico','Apto médico · Profesores','Liquidaciones · Alerta deserción','2 colaboradores'] },
-      { name: 'Premium', features: ['Socios ilimitados','Todo lo del plan Profesional','Reportes avanzados','5 colaboradores','Soporte prioritario'] },
+      {
+        name: 'Básico',
+        features: [
+          'Hasta 100 socios',
+          'Hasta 3 actividades',
+          'Check-in QR y manual',
+          'Cobros y caja',
+          'Dashboard',
+          '1 usuario',
+        ],
+      },
+      {
+        name: 'Profesional',
+        highlight: true,
+        badge: 'Más elegido',
+        features: [
+          'Hasta 300 socios',
+          'Actividades ilimitadas',
+          'Todo lo del plan Básico',
+          'Apto médico · Profesores',
+          'Liquidaciones · Alerta deserción',
+          '2 colaboradores',
+        ],
+      },
+      {
+        name: 'Premium',
+        features: [
+          'Socios ilimitados',
+          'Todo lo del plan Profesional',
+          'Reportes avanzados',
+          '5 colaboradores',
+          'Soporte prioritario',
+        ],
+      },
     ]}
   />
 </Layout>

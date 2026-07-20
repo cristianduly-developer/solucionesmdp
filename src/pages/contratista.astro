@@ -2,31 +2,90 @@
 import Layout from '../layouts/Layout.astro';
 import AppPage from '../components/AppPage.astro';
 ---
-<Layout title="App Contratista" description="Gestioná obras, gremios, pagos y finanzas desde el celular. Para contratistas que manejan varias obras a la vez." navType="app">
+<Layout
+  title="App para Contratistas de Obra y Construcción"
+  description="App para contratistas, constructoras y maestros mayores de obra en Argentina. Gestión de obras, gremios, pagos a subcontratistas, cobros al inversor y presupuestos con aprobación online. Probá gratis."
+  keywords="app contratista obra, software construcción, app maestro mayor de obra, gestión obras argentina, app gremios construcción, presupuesto obra celular"
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "App Contratista - Soluciones MDP",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "ARS", description: "28 días gratis" },
+    description: "App para contratistas de obra. Gestión de obras, gremios, pagos y presupuestos con aprobación desde el celular."
+  }}
+>
   <AppPage
     name="App Contratista"
     tagline="Tu obra, tus gremios, tus finanzas — todo en orden"
     description="Sabé exactamente cuánto ganás en cada obra, qué le debés a cada gremio y qué te falta cobrar del inversor. Sin Excel, sin papel, desde el celular."
+    icon="🏗️"
+    screenshots={['/screenshots/contratista/dashboard.jpg', '/screenshots/contratista/obras.jpg', '/screenshots/contratista/gremios.jpg', '/screenshots/contratista/viernes.jpg']}
     audience="Contratistas · Constructores · Administradores de obras"
-    accentColor="oklch(72% 0.18 50)"
+    accentColor="bg-yellow-500"
+    accentBg="bg-yellow-500/10"
+    accentBorder="border-yellow-500/30"
+    accentText="text-yellow-400"
     ctaUrl="https://contratista.solucionesmdp.com.ar"
-    screenshots={['/screenshots/contratista/dashboard.jpg','/screenshots/contratista/obra.jpg','/screenshots/contratista/gremios.jpg','/screenshots/contratista/viernes.jpg']}
-    differentiators={['Ganancia neta en tiempo real','Links para gremios sin cuenta','Calculadora de presupuesto por m²','Vista financiera semanal (Viernes)','Registro de materiales por obra','Alertas y checklist por obra','Fotos desde cámara o galería','Multi-obra con estado de avance']}
+    differentiators={[
+      'Ganancia neta en tiempo real',
+      'Links para gremios sin cuenta',
+      'Calculadora de presupuesto por m²',
+      'Vista financiera semanal (Viernes)',
+      'Registro de materiales por obra',
+      'Alertas y checklist por obra',
+      'Fotos desde cámara o galería',
+      'Multi-obra con estado de avance',
+    ]}
     features={[
-      { title: 'Dashboard financiero', desc: 'Ganancia neta global, pendiente de cobro, pendiente de pago y alertas activas — todo en la pantalla de inicio.' },
-      { title: 'Gestión de obras', desc: 'Cada obra avanza en 4 etapas: Presupuestada → En ejecución → Finalizada → Cobrada. Con nombre, dirección, m² y precio pactado.' },
-      { title: 'Gremios por obra', desc: 'Asignás electricistas, plomeros, pintores y más a cada obra. Ves cuánto acordaste, cuánto pagaste y el saldo pendiente.' },
-      { title: 'Pagos y cobros', desc: 'Registrás pagos a gremios (efectivo, transferencia o cheque) y cobros del inversor. El balance se actualiza al instante.' },
-      { title: 'Vista Viernes', desc: 'Resumen financiero semanal: total pagado a gremios, total cobrado del inversor y balance de la semana. Con navegador de semanas.' },
-      { title: 'Links públicos para gremios', desc: 'Cada gremio tiene un link único que compartís por WhatsApp. Ven su saldo, obras asignadas y fotos — sin crearse una cuenta.' },
-      { title: 'Calculadora por m²', desc: 'Configurás tu precio por m² para cada rubro. Ingresás los metros y la app calcula el costo total estimado.' },
-      { title: 'Materiales por obra', desc: 'Registrás los materiales comprados con descripción, cantidad y costo. Se descuentan de la ganancia neta automáticamente.' },
-      { title: 'Alertas y checklist', desc: 'Creás recordatorios dentro de cada obra. Se resuelven con un tap. El dashboard muestra cuántas quedan pendientes.' },
+      { icon: '📊', title: 'Dashboard financiero', desc: 'Ganancia neta global (cobrado al inversor menos pagos a gremios y materiales), pendiente de cobro, pendiente de pago y alertas activas — todo en la pantalla de inicio.' },
+      { icon: '🏗️', title: 'Gestión de obras', desc: 'Cada obra avanza en 4 etapas: Presupuestada → En ejecución → Finalizada → Cobrada. Con nombre, dirección, m² y precio pactado con el inversor.' },
+      { icon: '👷', title: 'Gremios por obra', desc: 'Asignás electricistas, plomeros, pintores y más a cada obra. Ves cuánto acordaste, cuánto pagaste y el saldo pendiente de cada uno.' },
+      { icon: '💸', title: 'Pagos y cobros', desc: 'Registrás pagos a gremios (efectivo, transferencia o cheque) y cobros del inversor. El balance se actualiza al instante.' },
+      { icon: '📅', title: 'Vista Viernes', desc: 'Resumen financiero semanal: total pagado a gremios, total cobrado del inversor y balance de la semana. Con navegador de semanas para ver el historial.' },
+      { icon: '🔗', title: 'Links públicos para gremios', desc: 'Cada gremio tiene un link único que compartís por WhatsApp. Ven su saldo, obras asignadas, fotos y notas — sin necesidad de crearse una cuenta.' },
+      { icon: '📐', title: 'Calculadora por m²', desc: 'Configurás tu precio por m² para cada rubro (albañilería, electricidad, plomería, pintura, gas, carpintería y más). Ingresás los metros y la app calcula el costo total estimado.' },
+      { icon: '🧱', title: 'Materiales por obra', desc: 'Registrás los materiales comprados con descripción, cantidad y costo. Se descuentan de la ganancia neta automáticamente.' },
+      { icon: '🔔', title: 'Alertas y checklist', desc: 'Creás recordatorios dentro de cada obra ("Revisar instalación eléctrica", "Pedir presupuesto cerámica"). Se resuelven con un tap. El dashboard muestra cuántas quedan pendientes.' },
     ]}
     plans={[
-      { name: 'Básico', price: '$25.000/mes', features: ['Hasta 3 obras activas','Hasta 5 gremios','Pagos y cobros ilimitados','Vista Viernes','Calculadora por m²','Alertas por obra'] },
-      { name: 'Profesional', price: '$35.000/mes', highlight: true, badge: 'Más elegido', features: ['Hasta 6 obras activas','Hasta 8 gremios','Todo lo del plan Básico','Links públicos para gremios','Fotos de obra desde cámara','Materiales por obra'] },
-      { name: 'Premium', price: '$50.000/mes', features: ['Obras y gremios ilimitados','Todo lo del plan Profesional','Soporte prioritario','Gremios personalizados en calculadora'] },
+      {
+        name: 'Básico',
+        price: '$25.000/mes',
+        features: [
+          'Hasta 3 obras activas',
+          'Hasta 5 gremios',
+          'Pagos y cobros ilimitados',
+          'Vista Viernes',
+          'Calculadora por m²',
+          'Alertas por obra',
+        ],
+      },
+      {
+        name: 'Profesional',
+        price: '$35.000/mes',
+        highlight: true,
+        badge: 'Más elegido',
+        features: [
+          'Hasta 6 obras activas',
+          'Hasta 8 gremios',
+          'Todo lo del plan Básico',
+          'Links públicos para gremios',
+          'Fotos de obra desde cámara',
+          'Materiales por obra',
+        ],
+      },
+      {
+        name: 'Premium',
+        price: '$50.000/mes',
+        features: [
+          'Obras y gremios ilimitados',
+          'Todo lo del plan Profesional',
+          'Soporte prioritario',
+          'Gremios personalizados en calculadora',
+        ],
+      },
     ]}
   />
 </Layout>
