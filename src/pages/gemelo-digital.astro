@@ -24,17 +24,17 @@ const APP_NAMES: Record<string, string> = {
 };
 ---
 <Layout
-  title="Diagnóstico Digital Gratis"
-  description="Analizamos tu negocio gratis en 30 segundos. Descubrí qué le falta a tu presencia digital y recibí un recurso gratuito personalizado."
-  keywords="diagnóstico digital gratis, análisis web negocio, presencia digital pyme, auditoría web gratis"
+  title="Gemelo Digital Gratis"
+  description="Creamos el gemelo digital de tu negocio gratis en 30 segundos. Descubrí qué le falta a tu presencia digital y recibí un recurso gratuito personalizado."
+  keywords="gemelo digital gratis, análisis web negocio, presencia digital pyme, auditoría web gratis"
   schema={{
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "Diagnóstico Digital - Soluciones MDP",
+    name: "Gemelo Digital - Soluciones MDP",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     offers: { "@type": "Offer", price: "0", priceCurrency: "ARS", description: "100% gratis" },
-    description: "Analizamos tu web y te damos un diagnóstico personalizado de tu presencia digital con un recurso gratis."
+    description: "Analizamos tu web y creamos el gemelo digital personalizado de tu presencia digital con un recurso gratis."
   }}
 >
 
@@ -47,10 +47,10 @@ const APP_NAMES: Record<string, string> = {
         100% gratis — sin tarjeta — 30 segundos
       </div>
       <h1 class="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-4">
-        ¿Cómo está la presencia digital de tu negocio?
+        Creá el Gemelo Digital de tu negocio
       </h1>
       <p class="text-slate-400 text-lg">
-        Ingresá tu web y te hacemos un análisis profesional al instante. Además, te regalamos algo útil para tu negocio.
+        Ingresá tu web y te creamos el gemelo digital de tu negocio al instante. Además, te regalamos algo útil para tu negocio.
       </p>
     </div>
 
@@ -91,9 +91,9 @@ const APP_NAMES: Record<string, string> = {
       </div>
       <button type="submit" id="submit-btn"
         class="w-full py-3.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-lg transition-colors mt-2 cursor-pointer">
-        Analizar mi negocio gratis
+        Crear mi Gemelo Digital gratis
       </button>
-      <p class="text-center text-xs text-slate-500 mt-2">No spam. Solo tu diagnóstico.</p>
+      <p class="text-center text-xs text-slate-500 mt-2">No spam. Solo tu gemelo digital.</p>
     </form>
   </div>
 </section>
@@ -121,7 +121,7 @@ const APP_NAMES: Record<string, string> = {
     <!-- Header con puntaje -->
     <div class="text-center mb-12">
       <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-2">
-        Diagnóstico de <span id="r-nombre" class="text-cyan-400"></span>
+        Gemelo Digital de <span id="r-nombre" class="text-cyan-400"></span>
       </h2>
       <p id="r-descripcion" class="text-slate-400 text-lg"></p>
     </div>
@@ -175,6 +175,19 @@ const APP_NAMES: Record<string, string> = {
         <p class="text-slate-400 mt-1">Esto es tuyo, gratis, sin compromiso.</p>
       </div>
       <div id="r-preview" class="rounded-xl border border-white/10 bg-white/[0.03] p-6 overflow-x-auto"></div>
+    </div>
+
+    <!-- Link compartible -->
+    <div id="r-link-section" class="hidden mb-12">
+      <div class="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-6 text-center">
+        <p class="text-xs text-cyan-400 uppercase tracking-wider mb-2">Tu link compartible</p>
+        <p class="text-slate-400 text-sm mb-3">Compartilo por WhatsApp, redes o imprimilo en un QR</p>
+        <div class="flex items-center gap-2 max-w-md mx-auto">
+          <input id="r-link-input" type="text" readonly class="flex-1 px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm font-mono truncate" />
+          <button id="r-link-copy" class="px-4 py-2.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-medium transition-colors whitespace-nowrap">Copiar</button>
+        </div>
+        <p id="r-link-copied" class="text-emerald-400 text-xs mt-2 hidden">Copiado al portapapeles</p>
+      </div>
     </div>
 
     <!-- CTA -->
@@ -244,7 +257,7 @@ form.addEventListener('submit', async (e) => {
   }, 3000);
 
   try {
-    const res = await fetch(`${API}/diagnostico`, {
+    const res = await fetch(`${API}/gemelo-digital`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ url, email, rubro }),
@@ -321,6 +334,23 @@ function renderResult(d) {
   const ctaEl = document.getElementById('r-cta');
   ctaEl.href = APP_URLS[appId] || '#';
   document.getElementById('r-app-name').textContent = APP_NAMES[appId] || 'la app';
+
+  // Link compartible
+  if (d.link) {
+    const linkSection = document.getElementById('r-link-section');
+    const linkInput = document.getElementById('r-link-input');
+    const linkCopy = document.getElementById('r-link-copy');
+    const linkCopied = document.getElementById('r-link-copied');
+    linkSection.classList.remove('hidden');
+    linkInput.value = d.link;
+    linkCopy.addEventListener('click', () => {
+      navigator.clipboard.writeText(d.link).then(() => {
+        linkCopied.classList.remove('hidden');
+        linkCopy.textContent = '✓ Copiado';
+        setTimeout(() => { linkCopied.classList.add('hidden'); linkCopy.textContent = 'Copiar'; }, 2000);
+      });
+    });
+  }
 
   // Señales
   if (d.senales) {

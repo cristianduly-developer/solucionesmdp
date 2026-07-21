@@ -1,0 +1,137 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout
+  title="Menú Digital"
+  description="Menú digital con QR — creado con Soluciones MDP"
+>
+
+<section id="loading" class="min-h-[calc(100vh-4rem)] flex items-center justify-center">
+  <div class="text-center">
+    <div class="w-12 h-12 mx-auto mb-4 border-2 border-cyan-500/20 border-t-cyan-400 rounded-full animate-spin"></div>
+    <p class="text-slate-400">Cargando menú...</p>
+  </div>
+</section>
+
+<section id="menu-section" class="hidden py-12 px-4">
+  <div class="max-w-lg mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 id="m-nombre" class="text-2xl font-bold text-white mb-1"></h1>
+      <p id="m-descripcion" class="text-slate-400 text-sm"></p>
+      <div id="m-info" class="flex justify-center gap-4 mt-3 text-xs text-slate-500"></div>
+    </div>
+
+    <!-- Items -->
+    <div id="m-items" class="space-y-6"></div>
+
+    <!-- Footer branding -->
+    <div class="mt-12 pt-6 border-t border-white/5 text-center">
+      <p class="text-xs text-slate-600 mb-2">Menú digital creado con</p>
+      <a href="https://www.solucionesmdp.com.ar/gastronomia" target="_blank" class="inline-flex items-center gap-2 text-sm text-cyan-500 hover:text-cyan-400 transition-colors">
+        <img src="/logo.png" alt="Soluciones MDP" class="h-8 w-auto opacity-60" />
+        <span class="font-semibold">Soluciones MDP</span>
+      </a>
+      <p class="text-xs text-slate-600 mt-2">
+        <a href="https://www.solucionesmdp.com.ar/gemelo-digital" class="text-cyan-600 hover:underline">Creá el tuyo gratis</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="error-section" class="hidden min-h-[calc(100vh-4rem)] flex items-center justify-center px-4">
+  <div class="text-center">
+    <p class="text-2xl mb-2">😕</p>
+    <h2 class="text-xl font-bold text-white mb-2">Menú no encontrado</h2>
+    <p class="text-slate-400">Este link puede haber expirado o no existir.</p>
+    <a href="https://www.solucionesmdp.com.ar/gemelo-digital" class="inline-block mt-4 px-6 py-2 rounded-lg bg-cyan-600 text-white font-medium text-sm">Crear mi menú gratis</a>
+  </div>
+</section>
+
+</Layout>
+
+<script>
+const SB_URL = 'https://ngymvfvlknaltsvsrvjm.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5neW12ZnZsa25hbHRzdnNydmptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkyMTMxNDYsImV4cCI6MjA1NDc4OTE0Nn0.HSjgnABBbTnKQSMkrBpYkXZBeKNGxL4Yb5LEjWmHhbA';
+
+async function init() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('s') || params.get('slug');
+  if (!slug) { showError(); return; }
+
+  try {
+    // Increment visits
+    fetch(`${SB_URL}/rest/v1/rpc/increment_gemelo_visitas`, {
+      method: 'POST',
+      headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug_param: slug }),
+    }).catch(() => {});
+
+    const res = await fetch(`${SB_URL}/rest/v1/gemelos_digitales?slug=eq.${slug}&select=*`, {
+      headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` },
+    });
+    const data = await res.json();
+    if (!data?.length) { showError(); return; }
+
+    const g = data[0];
+    if (g.preview_type !== 'gastro') {
+      // Redirect to appropriate page for non-gastro
+      window.location.href = `/mi/negocio?s=${slug}`;
+      return;
+    }
+
+    render(g);
+  } catch (e) {
+    showError();
+  }
+}
+
+function render(g) {
+  document.getElementById('loading').classList.add('hidden');
+  document.getElementById('menu-section').classList.remove('hidden');
+
+  document.getElementById('m-nombre').textContent = g.nombre || 'Menú';
+  document.getElementById('m-descripcion').textContent = g.descripcion || '';
+  document.title = `${g.nombre || 'Menú'} — Menú Digital`;
+
+  const info = document.getElementById('m-info');
+  const parts = [];
+  if (g.horarios && g.horarios !== 'Consultar') parts.push(`🕐 ${g.horarios}`);
+  if (g.direccion) parts.push(`📍 ${g.direccion}`);
+  if (g.redes?.instagram) parts.push(`📸 ${g.redes.instagram}`);
+  info.innerHTML = parts.map(p => `<span>${p}</span>`).join('');
+
+  const items = g.items || [];
+  const cats = {};
+  items.forEach(it => {
+    const cat = it.categoria || 'Menú';
+    if (!cats[cat]) cats[cat] = [];
+    cats[cat].push(it);
+  });
+
+  const container = document.getElementById('m-items');
+  container.innerHTML = Object.entries(cats).map(([cat, its]) => `
+    <div>
+      <h2 class="text-cyan-400 font-semibold text-sm uppercase tracking-wider border-b border-white/10 pb-2 mb-3">${cat}</h2>
+      <div class="space-y-1">
+        ${its.map(it => {
+          const precio = Number(it.precio);
+          const precioStr = !isNaN(precio) && precio > 0 ? `$${precio.toLocaleString('es-AR')}` : '';
+          return `
+          <div class="flex justify-between items-baseline py-2">
+            <span class="text-slate-200 text-sm">${it.nombre}</span>
+            ${precioStr ? `<span class="text-white font-medium text-sm ml-4 whitespace-nowrap">${precioStr}</span>` : ''}
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function showError() {
+  document.getElementById('loading').classList.add('hidden');
+  document.getElementById('error-section').classList.remove('hidden');
+}
+
+init();
+</script>
