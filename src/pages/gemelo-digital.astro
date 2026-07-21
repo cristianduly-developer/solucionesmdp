@@ -56,10 +56,23 @@ const APP_NAMES: Record<string, string> = {
 
     <form id="diag-form" class="space-y-4">
       <div>
-        <label for="url" class="block text-sm font-medium text-slate-300 mb-1.5">URL de tu web o red social</label>
-        <input type="text" id="url" name="url" required placeholder="www.tunegocio.com"
+        <label for="url" class="block text-sm font-medium text-slate-300 mb-1.5">URL de tu web <span class="text-slate-500">(o dejalo vacío)</span></label>
+        <input type="text" id="url" name="url" placeholder="www.tunegocio.com"
           class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30 transition" />
       </div>
+      <div id="nombre-ciudad-row" class="hidden grid grid-cols-2 gap-3">
+        <div>
+          <label for="nombre_negocio" class="block text-sm font-medium text-slate-300 mb-1.5">Nombre del negocio</label>
+          <input type="text" id="nombre_negocio" placeholder="Ej: Lo de Juan"
+            class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30 transition" />
+        </div>
+        <div>
+          <label for="ciudad" class="block text-sm font-medium text-slate-300 mb-1.5">Ciudad</label>
+          <input type="text" id="ciudad" placeholder="Ej: Mar del Plata"
+            class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30 transition" />
+        </div>
+      </div>
+      <p id="sin-web-toggle" class="text-xs text-cyan-500 cursor-pointer hover:underline">¿No tenés web? Ingresá el nombre de tu negocio</p>
       <div>
         <label for="email" class="block text-sm font-medium text-slate-300 mb-1.5">Tu email</label>
         <input type="email" id="email" name="email" required placeholder="nombre@email.com"
@@ -139,6 +152,12 @@ const APP_NAMES: Record<string, string> = {
           <span class="text-sm text-slate-400">/10</span>
         </div>
       </div>
+    </div>
+
+    <!-- Índice Digital desglosado -->
+    <div id="r-scores-section" class="mb-12">
+      <h3 class="text-center text-sm text-slate-400 uppercase tracking-wider mb-6">Índice Digital Soluciones MDP</h3>
+      <div class="grid grid-cols-5 gap-3" id="r-scores"></div>
     </div>
 
     <!-- Grid fortalezas / debilidades -->
@@ -233,12 +252,28 @@ const steps = [
   'Armando tu recurso gratuito',
 ];
 
+// Toggle sin web
+const sinWebToggle = document.getElementById('sin-web-toggle');
+const nombreCiudadRow = document.getElementById('nombre-ciudad-row');
+sinWebToggle.addEventListener('click', () => {
+  const showing = !nombreCiudadRow.classList.contains('hidden');
+  nombreCiudadRow.classList.toggle('hidden');
+  sinWebToggle.textContent = showing ? '¿No tenés web? Ingresá el nombre de tu negocio' : '↑ Tengo web, quiero poner la URL';
+});
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   let url = document.getElementById('url').value.trim();
   if (url && !url.match(/^https?:\/\//i)) url = 'https://' + url;
   const email = document.getElementById('email').value.trim();
   const rubro = document.getElementById('rubro').value;
+  const nombre_negocio = document.getElementById('nombre_negocio')?.value?.trim() || '';
+  const ciudad = document.getElementById('ciudad')?.value?.trim() || '';
+
+  if (!url && !nombre_negocio) {
+    alert('Ingresá tu web o el nombre de tu negocio');
+    return;
+  }
 
   formSection.classList.add('hidden');
   loadingSection.classList.remove('hidden');
@@ -260,7 +295,7 @@ form.addEventListener('submit', async (e) => {
     const res = await fetch(`${API}/gemelo-digital`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url, email, rubro }),
+      body: JSON.stringify({ url: url || undefined, email, rubro, nombre_negocio: nombre_negocio || undefined, ciudad: ciudad || undefined }),
     });
 
     clearInterval(stepInterval);
@@ -310,6 +345,28 @@ function renderResult(d) {
     puntajeEl.textContent = count;
     if (count >= puntaje) clearInterval(counterInterval);
   }, 150);
+
+  // Scores desglosados
+  if (d.scores) {
+    const labels = { presencia: 'Presencia', comunicacion: 'Comunicación', conversion: 'Conversión', confianza: 'Confianza', informacion: 'Información' };
+    const icons = { presencia: '🌐', comunicacion: '💬', conversion: '🛒', confianza: '⭐', informacion: '📋' };
+    const scoresEl = document.getElementById('r-scores');
+    scoresEl.innerHTML = Object.entries(labels).map(([key, label]) => {
+      const val = d.scores[key] || 0;
+      const color = val >= 7 ? '#10b981' : val >= 4 ? '#f59e0b' : '#ef4444';
+      return `<div class="text-center">
+        <div class="relative w-14 h-14 mx-auto mb-2">
+          <svg class="w-full h-full -rotate-90" viewBox="0 0 44 44">
+            <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3"/>
+            <circle cx="22" cy="22" r="18" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round"
+              stroke-dasharray="${113}" stroke-dashoffset="${113 - (113 * val / 10)}"/>
+          </svg>
+          <span class="absolute inset-0 flex items-center justify-center text-sm font-bold text-white">${val}</span>
+        </div>
+        <p class="text-xs text-slate-400">${icons[key]} ${label}</p>
+      </div>`;
+    }).join('');
+  }
 
   // Fortalezas
   const fortEl = document.getElementById('r-fortalezas');
