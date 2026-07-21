@@ -57,7 +57,7 @@ const APP_NAMES: Record<string, string> = {
     <form id="diag-form" class="space-y-4">
       <div>
         <label for="url" class="block text-sm font-medium text-slate-300 mb-1.5">URL de tu web <span class="text-slate-500">(o dejalo vacío)</span></label>
-        <input type="text" id="url" name="url" placeholder="www.tunegocio.com"
+        <input type="text" id="url" name="url" placeholder="www.tunegocio.com o nombre del local"
           class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30 transition" />
       </div>
       <div id="nombre-ciudad-row" class="hidden grid grid-cols-2 gap-3">
@@ -264,11 +264,18 @@ sinWebToggle.addEventListener('click', () => {
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   let url = document.getElementById('url').value.trim();
-  if (url && !url.match(/^https?:\/\//i)) url = 'https://' + url;
   const email = document.getElementById('email').value.trim();
   const rubro = document.getElementById('rubro').value;
-  const nombre_negocio = document.getElementById('nombre_negocio')?.value?.trim() || '';
+  let nombre_negocio = document.getElementById('nombre_negocio')?.value?.trim() || '';
   const ciudad = document.getElementById('ciudad')?.value?.trim() || '';
+
+  // Si escribieron algo en URL que no parece una URL real, tratarlo como nombre
+  const looksLikeUrl = /^(https?:\/\/|[a-z0-9][-a-z0-9]*\.[a-z]{2,})/i;
+  if (url && !looksLikeUrl.test(url)) {
+    if (!nombre_negocio) nombre_negocio = url;
+    url = '';
+  }
+  if (url && !url.match(/^https?:\/\//i)) url = 'https://' + url;
 
   if (!url && !nombre_negocio) {
     alert('Ingresá tu web o el nombre de tu negocio');
