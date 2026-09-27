@@ -10,7 +10,7 @@ interface Props {
 }
 const {
   title,
-  description = "Apps para negocios argentinos. Sin instalación, sin papeles, desde el celular.",
+  description = "Estudio de desarrollo de software en Mar del Plata. Diseñamos apps a medida para negocios reales.",
   ogImage = "/og-image.svg",
   keywords = "",
   canonical = "",
@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 
 const siteUrl = "https://www.solucionesmdp.com.ar";
-const fullTitle = title === "Inicio" ? "Soluciones MDP — Apps para negocios argentinos" : `${title} | Soluciones MDP`;
+const fullTitle = title === "Inicio" ? "Soluciones MDP — Estudio de desarrollo de software" : `${title} | Soluciones MDP`;
 const canonicalUrl = canonical || `${siteUrl}${Astro.url.pathname}`;
 const orgSchema = {
   "@context": "https://schema.org",
@@ -26,7 +26,7 @@ const orgSchema = {
   name: "Soluciones MDP",
   url: siteUrl,
   logo: `${siteUrl}/logo.png`,
-  description: "Desarrollo de apps y software a medida para negocios en Mar del Plata, Argentina.",
+  description: "Estudio de desarrollo de software a medida para negocios en Mar del Plata, Argentina.",
   address: { "@type": "PostalAddress", addressLocality: "Mar del Plata", addressRegion: "Buenos Aires", addressCountry: "AR" },
   contactPoint: { "@type": "ContactPoint", telephone: "+54-223-576-7784", contactType: "sales", availableLanguage: "Spanish" },
   sameAs: ["https://instagram.com/solucionesmdp", "https://facebook.com/solucionesmdp"]
@@ -48,7 +48,6 @@ const orgSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Soluciones MDP" />
@@ -58,137 +57,150 @@ const orgSchema = {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="es_AR" />
-
-    <!-- Twitter / WhatsApp -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-[#0a0a0f] text-slate-100 font-['Inter',sans-serif] antialiased overflow-x-hidden">
-    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#0a0a0f]/80 backdrop-blur-md">
-      <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center">
-          <img src="/logo.png" alt="Soluciones MDP" class="h-24 w-auto" />
+  <body class="noise">
+    <!-- Nav -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.04] bg-[#050510]/70 backdrop-blur-xl">
+      <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2 relative z-10">
+          <img src="/logo.png" alt="Soluciones MDP" class="h-20 w-auto" />
         </a>
-        <div class="hidden md:flex items-stretch h-16">
-          <a href="/turnos" class="nav-tab group flex items-center gap-1.5 px-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-emerald-400 hover:border-emerald-400/60 hover:bg-emerald-400/5 transition-all duration-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-70 group-hover:opacity-100"></span>Turnos
-          </a>
-          <a href="/contratista" class="nav-tab group flex items-center gap-1.5 px-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-yellow-400 hover:border-yellow-400/60 hover:bg-yellow-400/5 transition-all duration-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-yellow-400 opacity-70 group-hover:opacity-100"></span>Contratista
-          </a>
-          <a href="/presup" class="nav-tab group flex items-center gap-1.5 px-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-slate-300 hover:border-slate-400/60 hover:bg-slate-400/5 transition-all duration-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-slate-400 opacity-70 group-hover:opacity-100"></span>Presup
-          </a>
-          <a href="/reparto" class="nav-tab group flex items-center gap-1.5 px-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-blue-400 hover:border-blue-400/60 hover:bg-blue-400/5 transition-all duration-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 opacity-70 group-hover:opacity-100"></span>Reparto
-          </a>
-          <a href="/docente" class="nav-tab group flex items-center gap-1.5 px-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-green-400 hover:border-green-400/60 hover:bg-green-400/5 transition-all duration-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-green-400 opacity-70 group-hover:opacity-100"></span>Docente
-          </a>
-          <a href="/eventos" class="nav-tab group flex items-center gap-1.5 px-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-amber-400 hover:border-amber-400/60 hover:bg-amber-400/5 transition-all duration-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 opacity-70 group-hover:opacity-100"></span>Eventos
-          </a>
-          <a href="/gastronomia" class="nav-tab group flex items-center gap-1.5 px-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-orange-400 hover:border-orange-400/60 hover:bg-orange-400/5 transition-all duration-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 opacity-70 group-hover:opacity-100"></span>Gastro
-          </a>
-          <a href="/membresias" class="nav-tab group flex items-center gap-1.5 px-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-teal-400 hover:border-teal-400/60 hover:bg-teal-400/5 transition-all duration-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-teal-400 opacity-70 group-hover:opacity-100"></span>Membresías
-          </a>
-          <a href="/web" class="nav-tab group flex items-center gap-1.5 px-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-violet-400 hover:border-violet-400/60 hover:bg-violet-400/5 transition-all duration-200">
-            <span class="w-1.5 h-1.5 rounded-full bg-violet-400 opacity-70 group-hover:opacity-100"></span>Web
-          </a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/#proyectos" class="text-sm text-slate-400 hover:text-white transition-colors duration-200">Proyectos</a>
+          <a href="/#servicios" class="text-sm text-slate-400 hover:text-white transition-colors duration-200">Servicios</a>
+          <a href="/#proceso" class="text-sm text-slate-400 hover:text-white transition-colors duration-200">Proceso</a>
+          <a href="/#testimonios" class="text-sm text-slate-400 hover:text-white transition-colors duration-200">Testimonios</a>
         </div>
-        <a href="https://wa.me/542236965481" target="_blank"
-          class="text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg transition-colors">
-          Consultar
-        </a>
+
+        <div class="flex items-center gap-3">
+          <a href="https://wa.me/542236965481" target="_blank"
+            class="text-sm font-semibold bg-white text-[#050510] px-5 py-2 rounded-lg hover:bg-slate-200 transition-colors duration-200">
+            Contactar
+          </a>
+          <!-- Mobile hamburger -->
+          <button id="menu-toggle" class="md:hidden relative z-10 w-9 h-9 flex items-center justify-center rounded-lg border border-white/10 hover:border-white/20 transition-colors" aria-label="Menú">
+            <svg id="menu-icon-open" class="w-5 h-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <svg id="menu-icon-close" class="w-5 h-5 text-slate-300 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
     </nav>
-    <!-- Scroll beam — solo desktop -->
-    <div class="fixed left-6 xl:left-10 top-0 bottom-0 pointer-events-none z-30 hidden lg:block" aria-hidden="true">
-      <!-- Track faint -->
-      <div class="absolute left-1/2 -translate-x-1/2 top-16 bottom-0 w-px bg-white/[0.04]"></div>
-      <!-- Línea rellena -->
-      <div id="beam-fill"
-        class="absolute left-1/2 -translate-x-1/2 top-16 w-px origin-top"
-        style="height: calc(100% - 4rem); transform-origin: top; transform: scaleY(0) translateX(-50%); background: linear-gradient(to bottom, transparent, #818cf8 40%, #a5b4fc);">
-      </div>
-      <!-- Spark en la punta -->
-      <div id="beam-spark"
-        class="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full"
-        style="top: 4rem; background: #c7d2fe; box-shadow: 0 0 6px 3px rgba(165,180,252,0.9), 0 0 20px 6px rgba(129,140,248,0.5); opacity: 0;">
-      </div>
-      <!-- Halo suave que sigue al spark -->
-      <div id="beam-halo"
-        class="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full -translate-y-1/2"
-        style="top: 4rem; background: radial-gradient(circle, rgba(129,140,248,0.15) 0%, transparent 70%); opacity: 0;">
+
+    <!-- Mobile menu overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-[#050510]/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-8 pt-16">
+      <a href="/#proyectos" class="mobile-link text-2xl font-semibold text-white hover:text-indigo-400 transition-colors">Proyectos</a>
+      <a href="/#servicios" class="mobile-link text-2xl font-semibold text-white hover:text-indigo-400 transition-colors">Servicios</a>
+      <a href="/#proceso" class="mobile-link text-2xl font-semibold text-white hover:text-indigo-400 transition-colors">Proceso</a>
+      <a href="/#testimonios" class="mobile-link text-2xl font-semibold text-white hover:text-indigo-400 transition-colors">Testimonios</a>
+      <div class="border-t border-white/10 pt-8 flex flex-col items-center gap-4">
+        <a href="https://wa.me/542236965481" target="_blank"
+          class="text-lg font-semibold bg-white text-[#050510] px-8 py-3 rounded-xl hover:bg-slate-200 transition-colors">
+          Contactar por WhatsApp
+        </a>
+        <a href="https://instagram.com/solucionesmdp" target="_blank" class="text-sm text-slate-500 hover:text-white transition-colors">
+          @solucionesmdp
+        </a>
       </div>
     </div>
 
     <main class="pt-16">
       <slot />
     </main>
-    <footer class="border-t border-white/5 mt-24 py-12">
-      <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-        <div class="flex items-center gap-3">
-          <img src="/logo.png" alt="Soluciones MDP" class="h-24 w-auto" />
-          <p>© 2025 Soluciones MDP. Mar del Plata, Argentina.</p>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/[0.04] mt-32">
+      <div class="max-w-6xl mx-auto px-5 py-16">
+        <div class="grid md:grid-cols-3 gap-12 md:gap-8">
+          <!-- Brand -->
+          <div>
+            <img src="/logo.png" alt="Soluciones MDP" class="h-20 w-auto mb-4" />
+            <p class="text-sm text-slate-500 leading-relaxed max-w-xs">
+              Estudio de desarrollo de software en Mar del Plata, Argentina. Diseñamos apps a medida para negocios reales.
+            </p>
+          </div>
+          <!-- Links -->
+          <div>
+            <h4 class="text-sm font-semibold text-slate-300 mb-4">Navegación</h4>
+            <div class="flex flex-col gap-2.5">
+              <a href="/#proyectos" class="text-sm text-slate-500 hover:text-white transition-colors">Proyectos</a>
+              <a href="/#servicios" class="text-sm text-slate-500 hover:text-white transition-colors">Servicios</a>
+              <a href="/#proceso" class="text-sm text-slate-500 hover:text-white transition-colors">Proceso</a>
+              <a href="/#testimonios" class="text-sm text-slate-500 hover:text-white transition-colors">Testimonios</a>
+            </div>
+          </div>
+          <!-- Contact -->
+          <div>
+            <h4 class="text-sm font-semibold text-slate-300 mb-4">Contacto</h4>
+            <div class="flex flex-col gap-2.5">
+              <a href="https://wa.me/542236965481" target="_blank" class="text-sm text-slate-500 hover:text-white transition-colors flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+              </a>
+              <a href="https://instagram.com/solucionesmdp" target="_blank" class="text-sm text-slate-500 hover:text-white transition-colors flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                @solucionesmdp
+              </a>
+              <p class="text-sm text-slate-600 mt-2">Mar del Plata, Buenos Aires, Argentina</p>
+            </div>
+          </div>
         </div>
-        <a href="https://wa.me/542236965481" target="_blank" class="hover:text-white transition-colors">
-          Contacto por WhatsApp
-        </a>
+        <div class="border-t border-white/[0.04] mt-12 pt-8 text-center">
+          <p class="text-xs text-slate-600">&copy; 2025 Soluciones MDP. Todos los derechos reservados.</p>
+        </div>
       </div>
     </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Mobile menu toggle
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+      if (toggle && menu && iconOpen && iconClose) {
+        toggle.addEventListener('click', () => {
+          const isOpen = !menu.classList.contains('hidden');
+          menu.classList.toggle('hidden');
+          menu.classList.toggle('flex');
+          iconOpen.classList.toggle('hidden');
+          iconClose.classList.toggle('hidden');
+          document.body.style.overflow = isOpen ? '' : 'hidden';
+        });
+        menu.querySelectorAll('.mobile-link').forEach(link => {
+          link.addEventListener('click', () => {
+            menu.classList.add('hidden');
+            menu.classList.remove('flex');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+            document.body.style.overflow = '';
+          });
+        });
+      }
+
+      // Scroll reveal
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
   </body>
 </html>
-
-<script>
-  const fill = document.getElementById('beam-fill');
-  const spark = document.getElementById('beam-spark');
-  const halo = document.getElementById('beam-halo');
-  if (fill && spark && halo) {
-    const OFFSET = 64; // altura del nav
-    let ticking = false;
-
-    function update() {
-      const scrolled = window.scrollY;
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = total > 0 ? Math.min(scrolled / total, 1) : 0;
-
-      // La línea crece desde 0 hasta el 100% del track
-      fill.style.transform = `scaleY(${progress}) translateX(-50%)`;
-
-      // El spark y el halo se mueven al frente de la línea
-      const trackHeight = window.innerHeight - OFFSET;
-      const y = OFFSET + progress * trackHeight;
-      spark.style.top = `${y}px`;
-      halo.style.top = `${y}px`;
-
-      // Fade in al empezar a scrollear, fade out al llegar al final
-      const opacity = progress > 0.01 && progress < 0.99 ? 1 : 0;
-      spark.style.opacity = String(opacity);
-      halo.style.opacity = String(opacity * 0.8);
-
-      // Pequeño pulso: escala el spark ligeramente con el scroll
-      const pulse = 1 + Math.sin(scrolled * 0.05) * 0.3;
-      spark.style.transform = `translateX(-50%) scale(${pulse})`;
-
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    // Estado inicial
-    update();
-  }
-</script>
