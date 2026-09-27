@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AppPage from '../components/AppPage.astro';
+---
+<Layout
+  title="App Distribución — ERP para Distribuidores de Frutas y Verduras"
+  description="ERP vertical para distribuidores mayoristas de frutas y verduras. Pedidos, mercado, carga, despacho, facturación, cuentas corrientes y logística. Soluciones MDP."
+  keywords="app distribuidor frutas verduras, ERP distribución mayorista, software reparto, app pedidos distribuidora, sistema distribución alimentos, app mercado central"
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "App Distribución - Soluciones MDP",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "ARS", description: "Demo personalizada" },
+    description: "ERP completo para distribuidores de frutas y verduras. Pedidos, compras en mercado, carga, despacho y cuentas corrientes."
+  }}
+>
+  <AppPage
+    name="App Distribución"
+    tagline="Del mercado al cliente — toda la operación en tu celular"
+    description="ERP completo diseñado para distribuidores de frutas y verduras. Pedidos, compras en mercado central, carga del camión, despacho, facturación y cuentas corrientes."
+    icon="🚛"
+    screenshots={['/screenshots/distribucion/dashboard.png', '/screenshots/distribucion/comprobantes.png']}
+    audience="Distribuidores · Mayoristas · Repartidores"
+    accentColor="#f59e0b"
+    accentBg="bg-amber-500/10"
+    accentBorder="border-amber-500/30"
+    accentText="text-amber-400"
+    ctaUrl="https://wa.me/542236965481?text=Hola!%20Me%20interesa%20la%20App%20de%20Distribución%20para%20mi%20negocio"
+    differentiators={[
+      'Máquina de estados: pendiente → confirmado → comprado → cargado → entregado',
+      'Compras en mercado central',
+      'Carga de camión con stock',
+      'Remitos y facturación ARCA',
+      'Cuentas corrientes por cliente',
+      'Dashboard financiero diario',
+      'Multi-usuario con roles',
+      '100% offline con sincronización',
+    ]}
+    features={[
+      { icon: '📋', title: 'Pedidos con máquina de estados', desc: 'Cada pedido pasa por 5 etapas: Pendiente → Confirmado → Comprado → Cargado → Entregado. El dashboard muestra cuántos hay en cada etapa y qué hacer ahora.' },
+      { icon: '🛒', title: 'Compras en mercado', desc: 'Llevás la lista de lo que hay que comprar al mercado central. Registrás proveedor, cantidad y precio. Se vincula automáticamente a los pedidos confirmados.' },
+      { icon: '📦', title: 'Carga del camión', desc: 'Ves todo lo comprado y lo cargás al camión. Control de stock en tiempo real: lo que compraste vs lo que cargaste vs lo que queda.' },
+      { icon: '🚚', title: 'Ruta y despacho', desc: 'Lista de entregas ordenada. Cada parada con detalle de productos, montos y estado. Registrás entrega total o parcial con ajuste de precio.' },
+      { icon: '🧾', title: 'Comprobantes: remitos y facturas', desc: 'Generás remitos y facturas (integración ARCA). Filtrás por cliente, fecha y tipo. Historial completo con estado de cada comprobante.' },
+      { icon: '💰', title: 'Cuentas corrientes', desc: 'Saldo de cada cliente actualizado al instante. Registrás cobros en efectivo, transferencia o cheque. Deuda acumulada visible en el dashboard.' },
+      { icon: '📊', title: 'Dashboard financiero', desc: 'Ventas del día, cobros, compras en mercado, gastos de logística y resultado neto. Todo actualizado en tiempo real desde la pantalla de inicio.' },
+      { icon: '👥', title: 'Multi-usuario con roles', desc: 'Cada usuario (dueño, repartidor, administrativo) tiene su propio acceso con permisos configurables. Onboarding guiado para nuevos usuarios.' },
+    ]}
+    plans={[
+      {
+        name: 'Operativo',
+        price: 'Consultar',
+        features: [
+          'Pedidos y despacho',
+          'Hasta 50 clientes',
+          'Cuentas corrientes',
+          'Dashboard básico',
+          'Un usuario',
+        ],
+      },
+      {
+        name: 'Profesional',
+        price: 'Consultar',
+        highlight: true,
+        badge: 'Recomendado',
+        features: [
+          'Clientes ilimitados',
+          'Todo lo del plan Operativo',
+          'Compras en mercado',
+          'Carga de camión',
+          'Remitos y facturación ARCA',
+          'Multi-usuario con roles',
+        ],
+      },
+      {
+        name: 'Enterprise',
+        price: 'Consultar',
+        features: [
+          'Todo lo del plan Profesional',
+          'Múltiples camiones/rutas',
+          'Reportes avanzados',
+          'API e integraciones',
+          'Soporte dedicado',
+        ],
+      },
+    ]}
+  />
+</Layout>

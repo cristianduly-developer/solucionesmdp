@@ -67,19 +67,19 @@ const projects = [
     features: ['PDF con firma digital', 'Gestión de obras', 'Reportes financieros', 'Agenda de visitas'],
   },
   {
-    slug: null,
+    slug: 'propiedades',
     name: 'PropAdmin',
     rubro: 'Administración inmobiliaria',
     desc: 'Sistema multi-tenant para administradoras: alquileres, cobros, propietarios, inquilinos y documentación.',
-    screenshot: null,
+    screenshot: '/screenshots/propiedades/reservas.png',
     features: ['Multi-tenant', 'Cobros automatizados', 'Portal propietarios', 'Gestión documental'],
   },
   {
-    slug: null,
+    slug: 'distribucion',
     name: 'App Distribución',
     rubro: 'Distribución mayorista',
     desc: 'ERP completo para distribuidores de frutas y verduras: pedidos, mercado, facturación y logística.',
-    screenshot: null,
+    screenshot: '/screenshots/distribucion/dashboard.png',
     features: ['Pedidos y despacho', 'Compras en mercado', 'Facturación', 'Cuentas corrientes'],
   },
   {
@@ -259,11 +259,20 @@ const industries = ['Peluquerías', 'Restaurantes', 'Gimnasios', 'Quinchos', 'Co
                   <span class="text-[11px] px-2 py-0.5 rounded" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: var(--text-faint);">{f}</span>
                 ))}
               </div>
-              <a href={`https://wa.me/542236965481?text=${waMsg}`} target="_blank"
-                class="inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors" style="color: var(--accent);">
-                Solicitar demo
-                <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" /></svg>
-              </a>
+              <div class="flex items-center gap-4">
+                {project.slug && (
+                  <a href={`/${project.slug}`}
+                    class="inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors" style="color: var(--text-muted);">
+                    Ver más
+                    <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" /></svg>
+                  </a>
+                )}
+                <a href={`https://wa.me/542236965481?text=${waMsg}`} target="_blank"
+                  class="inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors" style="color: var(--accent);">
+                  Solicitar demo
+                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" /></svg>
+                </a>
+              </div>
             </div>
           </div>
         );

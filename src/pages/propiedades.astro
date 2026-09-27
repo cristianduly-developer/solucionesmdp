@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AppPage from '../components/AppPage.astro';
+---
+<Layout
+  title="PropAdmin — Sistema para Administradoras de Propiedades"
+  description="Sistema multi-tenant para administradoras de propiedades temporarias. Gestión de alquileres, cobros, propietarios, inquilinos, calendario de reservas y documentación. Soluciones MDP."
+  keywords="sistema administradora propiedades, app alquileres temporarios, gestión propiedades Mar del Plata, software inmobiliaria, admin propiedades, cobros alquiler"
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "PropAdmin - Soluciones MDP",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "ARS", description: "Demo personalizada" },
+    description: "Sistema multi-tenant para administradoras de propiedades temporarias. Reservas, cobros, contactos y calendario."
+  }}
+>
+  <AppPage
+    name="PropAdmin"
+    tagline="Tus propiedades, tus inquilinos, tus cobros — todo en un solo lugar"
+    description="Sistema completo para administradoras de propiedades temporarias. Gestioná reservas, cobros, propietarios e inquilinos sin planillas ni papeles."
+    icon="🏠"
+    screenshots={['/screenshots/propiedades/contacto.png', '/screenshots/propiedades/reservas.png']}
+    audience="Administradoras · Inmobiliarias · Propietarios"
+    accentColor="#4ade80"
+    accentBg="bg-green-500/10"
+    accentBorder="border-green-500/30"
+    accentText="text-green-400"
+    ctaUrl="https://wa.me/542236965481?text=Hola!%20Me%20interesa%20PropAdmin%20para%20mi%20administradora%20de%20propiedades"
+    differentiators={[
+      'Multi-tenant: múltiples propiedades',
+      'Calendario visual de reservas',
+      'Check-in y check-out con estado',
+      'Fichas de contacto completas',
+      'Cobros y cuentas por propiedad',
+      'Portal para propietarios',
+      'Gestión documental integrada',
+      'WhatsApp y llamadas directas',
+    ]}
+    features={[
+      { icon: '🏘️', title: 'Gestión de propiedades', desc: 'Cada propiedad con su ficha: dirección, fotos, amenities, capacidad y propietario asignado. Filtrás, buscás y accedés rápido a cada una.' },
+      { icon: '📅', title: 'Calendario de reservas', desc: 'Vista mensual con check-in (verde) y check-out (rojo). Ves de un vistazo qué propiedades están ocupadas, cuáles se liberan y cuáles tienen reservas próximas.' },
+      { icon: '👤', title: 'Contactos completos', desc: 'Fichas de clientes e inquilinos con teléfono, DNI, ciudad, fecha de nacimiento. Botones directos de WhatsApp y llamada. Historial de reservas y cobros por persona.' },
+      { icon: '💰', title: 'Cobros y cuentas', desc: 'Registrás cobros por reserva, ves el total por alquiler y cuánto se cobró. Estado de pago visible en cada reserva: pagado, pendiente o parcial.' },
+      { icon: '📊', title: 'Dashboard de estado', desc: 'Reservas en curso, próximos check-in, alertas de cobro pendiente y resumen financiero. Todo en la pantalla de inicio.' },
+      { icon: '🔔', title: 'Seguimiento por contacto', desc: 'Pestaña de seguimiento en cada ficha de contacto para registrar interacciones, notas y recordatorios. Nunca pierdas el hilo con un cliente.' },
+    ]}
+    plans={[
+      {
+        name: 'Starter',
+        price: 'Consultar',
+        features: [
+          'Hasta 5 propiedades',
+          'Calendario de reservas',
+          'Fichas de contacto',
+          'Cobros básicos',
+          'WhatsApp integrado',
+        ],
+      },
+      {
+        name: 'Profesional',
+        price: 'Consultar',
+        highlight: true,
+        badge: 'Recomendado',
+        features: [
+          'Propiedades ilimitadas',
+          'Todo lo del plan Starter',
+          'Portal para propietarios',
+          'Reportes financieros',
+          'Gestión documental',
+          'Soporte prioritario',
+        ],
+      },
+      {
+        name: 'Enterprise',
+        price: 'Consultar',
+        features: [
+          'Todo lo del plan Profesional',
+          'Múltiples administradores',
+          'API e integraciones',
+          'Personalización de marca',
+        ],
+      },
+    ]}
+  />
+</Layout>
